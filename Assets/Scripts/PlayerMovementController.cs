@@ -16,7 +16,7 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpPower;
     public float jumpMaxSpeed;
     public int totalJumps;
-    int currentJumps;
+    public int currentJumps;
     internal Vector2 direction;
     bool canWallMoveDown;
     PhotonView photonView;
