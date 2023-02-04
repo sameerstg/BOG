@@ -150,7 +150,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
         while (PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1);
+            try
+            {
+
             pingText.text = PhotonNetwork.GetPing().ToString();
+            }
+            catch (System.Exception)
+            {
+
+                
+            }
         }
     }
 

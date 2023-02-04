@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,9 +15,13 @@ public class Player : MonoBehaviour
     PlayerAttackGenerater attackGenerator;
 
     Vector2 playerDirection = Vector2.right;
+        public Health health;
+    Slider slider;
+
     [SerializeField] float fireRate = 0.5f;
     float nextFire = 0.0f;
 
+    
     private void OnEnable()
     {
         playerInputController = GetComponentInParent<PlayerInputController>();
@@ -31,6 +36,13 @@ public class Player : MonoBehaviour
         playerInputController.playerActions.Movement.canceled += Move;
         playerInputController.playerActions.Jump.started += Jump;
         playerInputController.playerActions.Action.started += Fire;
+        slider = GetComponentInChildren<Slider>();
+        health.OnGetAttack += GetAttack;
+    }
+
+    private void GetAttack()
+    {
+        slider.value = health.currentHealth / health.totalHealth;
     }
 
     private void Fire(InputAction.CallbackContext obj)
@@ -52,8 +64,14 @@ public class Player : MonoBehaviour
         playerMovementController = null;
 
     }
-
-    private void Move(InputAction.CallbackContext obj)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Bullet"))
+        {
+            health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
+        }
+    }
+       private void Move(InputAction.CallbackContext obj)
     {
         playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
 
@@ -63,3 +81,26 @@ public class Player : MonoBehaviour
         }
     }
 }
+[System.Serializable]
+public class Health
+{
+    public float totalHealth;
+    public float currentHealth;
+    public OnGetAttack OnGetAttack;
+    public Health(int health)
+    {
+        this.totalHealth = health;
+        currentHealth = totalHealth;
+    }
+
+    public void GetDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        if (currentHealth<=0)
+        {
+            currentHealth = 0;   
+        }
+        OnGetAttack();
+    }
+}
+public delegate void OnGetAttack();
