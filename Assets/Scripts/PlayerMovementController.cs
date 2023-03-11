@@ -121,6 +121,13 @@ public class PlayerMovementController : MonoBehaviour
         rb.gravityScale = 1;
         canWallMoveDown = false;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Finish"))
+        {
+            transform.position = new Vector2();
+        }
+    }
     internal void SetMoveDirection(Vector2 direction) => this.direction = direction;
 
 }
