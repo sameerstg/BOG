@@ -5,15 +5,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public WeaponManager manager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SpriteRenderer spriteRenderer;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

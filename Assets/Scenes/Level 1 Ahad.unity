@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -196,6 +196,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2706093335147139082, guid: 657ff4d6d0f175449b7f05f9f72b1ddf, type: 3}
@@ -312,6 +313,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8477384813708913332, guid: 657ff4d6d0f175449b7f05f9f72b1ddf, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2706093335690912231, guid: 657ff4d6d0f175449b7f05f9f72b1ddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1978612152}
+    - targetCorrespondingSourceObject: {fileID: 2706093335690912231, guid: 657ff4d6d0f175449b7f05f9f72b1ddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1978612153}
   m_SourcePrefab: {fileID: 100100000, guid: 657ff4d6d0f175449b7f05f9f72b1ddf, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -354,9 +364,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -441,8 +459,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590907765}
+  - component: {fileID: 590907766}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Weapon Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,6 +482,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &590907766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590907764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa430709df99de419217fef99ae23a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPrefabs:
+  - {fileID: 2015416867779723716, guid: 55903ee8d0a0a7241a7c31e278b58eee, type: 3}
+  - {fileID: 2015416867779723716, guid: 0abf85f4c327b6242b811cf0eaf91311, type: 3}
+  - {fileID: 2015416867779723716, guid: 8ecbe6a3e84065a49bbb3a3406eca584, type: 3}
+  - {fileID: 2015416867779723716, guid: 463862b004aa34649aaf2beae6b6da80, type: 3}
+  - {fileID: 2015416867779723716, guid: 15fcb945150ad114d97a256528fc04af, type: 3}
+  - {fileID: 2015416867779723716, guid: f2d4582d12dbba24f952309c0cf7a097, type: 3}
+  - {fileID: 2015416867779723716, guid: 8cf3769714c2ccc40a7e17166fac711b, type: 3}
 --- !u!1 &1465307816
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +562,25 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -559,6 +617,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1404695675, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
@@ -626,4 +685,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}

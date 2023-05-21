@@ -11,7 +11,7 @@ public class PowerSpawner : MonoBehaviour
 {
  
     public List<GameObject> gunPrefabs = new List<GameObject>();
-    public GameObject levelSize;
+    //public GameObject levelSize;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +32,16 @@ public class PowerSpawner : MonoBehaviour
     {
         int randomItem = 0;
         GameObject toSpawn;
-        BoxCollider2D mC= levelSize.GetComponent<BoxCollider2D>();
+        //BoxCollider2D mC= levelSize.GetComponent<BoxCollider2D>();
 
         float screenX, screenY;
         Vector2 pos;
         
         randomItem = Random.Range(0, gunPrefabs.Count);
         toSpawn= gunPrefabs[randomItem];
-        screenX = Random.Range(mC.bounds.min.x, mC.bounds.max.x);
-        screenY = Random.Range(mC.bounds.min.y, mC.bounds.max.y);
-        pos= new Vector2(screenX, screenY);
+        //screenX = Random.Range(mC.bounds.min.x, mC.bounds.max.x);
+        //screenY = Random.Range(mC.bounds.min.y, mC.bounds.max.y);
+        pos= new Vector2(0, 2);
         GameObject GnPower =  Instantiate(toSpawn, pos, toSpawn.transform.rotation);
 
         yield return new WaitForSeconds(5f);
