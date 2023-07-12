@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.Device;
-using UnityEngine.InputSystem;
 
 public class PowerSpawner : MonoBehaviour
 {

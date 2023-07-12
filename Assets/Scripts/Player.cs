@@ -104,8 +104,8 @@ public class Player : MonoBehaviour
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
             currentWeapon.transform.parent = transform;
             weapons.Add(currentWeapon);
-            currentWeapon.transform.rotation = Quaternion.identity;
             SetWeaponTransform();
+            currentWeapon.transform.rotation = Quaternion.identity;
             
             
 
