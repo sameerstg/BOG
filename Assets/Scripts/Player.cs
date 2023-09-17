@@ -18,13 +18,17 @@ public class Player : MonoBehaviour
     float nextFire = 0.0f;
     public List<Weapon> weapons = new();
     public Weapon currentWeapon;
-    private void Start()
+    private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        RoomManager._instance.players.Add(new PlayerDetails((string)photonView.InstantiationData[0],(string) photonView.InstantiationData[1],gameObject));
+        RoomManager._instance.targetGroup.AddMember(transform,1,3);
         playerMovementController = GetComponent<PlayerMovementController>();
         attackGenerator = GetComponent<PlayerAttackGenerater>();
         slider = GetComponentInChildren<Slider>();
+        
     }
+ 
     private void OnEnable()
     {
         playerInputController = GetComponentInParent<PlayerInputController>();
@@ -45,6 +49,7 @@ public class Player : MonoBehaviour
         playerInputController.playerActions.Action.started -= Fire;
         health.OnGetAttack -= GetAttack;
     }
+       
     void SetWeaponTransform()
     {
         if (currentWeapon != null)
@@ -85,10 +90,6 @@ public class Player : MonoBehaviour
             nextFire = Time.time + currentWeapon.manager.fireRate;
             attackGenerator.Fire(playerMovementController.direction, playerDirection);
         }
-        else
-        {
-            print("not firing");
-        }
     }
 
     private void Jump(InputAction.CallbackContext obj)
@@ -125,7 +126,10 @@ public class Player : MonoBehaviour
     private void Move(InputAction.CallbackContext obj)
     {
         if (!photonView.IsMine)
+        {
+
             return;
+        }
             playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
         if (obj.ReadValue<Vector2>() != Vector2.zero)
         {

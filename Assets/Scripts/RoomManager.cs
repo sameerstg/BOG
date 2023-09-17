@@ -2,9 +2,11 @@ using Cinemachine;
 using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using Photon.Realtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 public class RoomManager : MonoBehaviourPunCallbacks
@@ -13,8 +15,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     PhotonView photonViewComponent;
     GameManager gm;
     public TextMeshProUGUI pingText;
-   public List<GameObject> players = new();
+
     public CinemachineTargetGroup targetGroup;
+    public List<PlayerDetails> players = new();
+
     public bool DidTimeout { private set; get; }
     static readonly RoomOptions s_RoomOptions = new RoomOptions
     {
@@ -23,7 +27,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PublishUserId = true,
 
     };
-
 
     void Awake()
     {
@@ -38,24 +41,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         StartCoroutine(DoJoinOrCreateRoom("stg1"));
     }
-        #region All Room Settings
+    #region All Room Settings
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
         Debug.Log("Created Room");
-        //InstantiateGame();
-
-
     }
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        Debug.Log("Joined Room");
-        StartCoroutine(SynchroniseGame());
-
+        PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer.UserId, "newusername" });
     }
-
-
 
     public void JoinOrCreateRoom(string preferredRoomName)
     {
@@ -131,60 +127,34 @@ public class RoomManager : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinRandomRoom();
         }
     }
-    
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Room Created on joining fail");
-
         PhotonNetwork.CreateRoom(null, s_RoomOptions, TypedLobby.Default);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
-
     {
         Debug.Log("Room Created on joining fail");
-
         PhotonNetwork.CreateRoom(null, s_RoomOptions, TypedLobby.Default);
     }
-    
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log(newPlayer);
-      
-    }
+
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
-        Debug.Log(otherPlayer);
-        var playerGo = players.Find(x => x.name == otherPlayer.UserId);
-        players.Remove(playerGo);
-        targetGroup.RemoveMember(playerGo.transform);
-        //if (!players.))
-        //{
-        //    players.Add(newPlayerGo);
-        //    targetGroup.AddMember(newPlayerGo.transform, 1f, 2f);
-
-        //}
-        //players.Remove(newPlayer);
-        //targetGroup.AddMember(newPlayer.transform, 1f, 2f);
+        var leavingPlayer = players.Find(x => x.id == otherPlayer.UserId);
+        if (leavingPlayer != null)
+        {
+            targetGroup.RemoveMember(leavingPlayer.player.transform);
+            players.Remove(leavingPlayer);
+        }
 
     }
-
     #endregion
     #region Synchronization Code
-    [PunRPC]
     IEnumerator SynchroniseGame()
     {
-        var newPlayerGo = PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity);
-
-        
-        if (!players.Contains(newPlayerGo))
-        {
-            players.Add(newPlayerGo);
-            targetGroup.AddMember(newPlayerGo.transform, 1f, 2f);
-
-        }
         while (PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1);
@@ -203,4 +173,18 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     #endregion
 
+}
+[System.Serializable]
+public class PlayerDetails
+{
+    public string id;
+    public string name;
+    public GameObject player;
+
+    public PlayerDetails(string id, string name, GameObject player)
+    {
+        this.id = id;
+        this.name = name;
+        this.player = player;
+    }
 }
