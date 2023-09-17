@@ -1,8 +1,4 @@
-using Photon.Pun;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -27,28 +23,26 @@ public class Player : MonoBehaviour
         playerMovementController = GetComponent<PlayerMovementController>();
         attackGenerator = GetComponent<PlayerAttackGenerater>();
     }
-    private void LateUpdate()
-    {
-
-        SetWeaponTransform();
-
-    }
     void SetWeaponTransform()
     {
         if (currentWeapon != null)
         {
             if (playerDirection.x > 0)
             {
-
                 currentWeapon.transform.position = transform.position + Vector3.right * weaponOffset;
             }
             else
             {
                 currentWeapon.transform.position = transform.position + Vector3.left * weaponOffset;
-
             }
-
-
+            if (playerDirection.x > 0)
+            {
+                currentWeapon.spriteRenderer.flipX = false;
+            }
+            else
+            {
+                currentWeapon.spriteRenderer.flipX = true;
+            }
         }
     }
     private void Start()
@@ -68,16 +62,16 @@ public class Player : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext obj)
     {
-        if(Time.time > nextFire && currentWeapon != null)
+        if (Time.time > nextFire && currentWeapon != null)
         {
             nextFire = Time.time + currentWeapon.manager.bulletSpeed;
             attackGenerator.Fire(playerMovementController.direction, playerDirection);
         }
-            }
+    }
 
     private void Jump(InputAction.CallbackContext obj)
     {
-        playerMovementController.Jump();    
+        playerMovementController.Jump();
     }
 
     private void OnDisable()
@@ -100,35 +94,27 @@ public class Player : MonoBehaviour
             collision.collider.tag = "Untagged";
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-           
+
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
             currentWeapon.transform.parent = transform;
             weapons.Add(currentWeapon);
             SetWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
-            
-            
+
+
 
         }
     }
-       private void Move(InputAction.CallbackContext obj)
+    private void Move(InputAction.CallbackContext obj)
     {
         playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
 
-        if(obj.ReadValue<Vector2>() != Vector2.zero)
+        if (obj.ReadValue<Vector2>() != Vector2.zero)
         {
             playerDirection = obj.ReadValue<Vector2>();
-            if (playerDirection.x>0)
-            {
-                currentWeapon.spriteRenderer.flipX = false;
-            }
-            else
-            {
-                currentWeapon.spriteRenderer.flipX = true;
-
-
-            }
+            SetWeaponTransform();
         }
+
 
     }
 }
@@ -147,9 +133,9 @@ public class Health
     public void GetDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        if (currentHealth<=0)
+        if (currentHealth <= 0)
         {
-            currentHealth = 0;   
+            currentHealth = 0;
         }
         OnGetAttack();
     }
