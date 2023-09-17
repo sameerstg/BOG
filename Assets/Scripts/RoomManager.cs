@@ -1,7 +1,9 @@
+using Cinemachine;
 using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using Photon.Realtime;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -11,6 +13,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     PhotonView photonViewComponent;
     GameManager gm;
     public TextMeshProUGUI pingText;
+   public List<GameObject> players = new();
+    public CinemachineTargetGroup targetGroup;
     public bool DidTimeout { private set; get; }
     static readonly RoomOptions s_RoomOptions = new RoomOptions
     {
@@ -24,6 +28,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     void Awake()
     {
         _instance = this;
+        targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
         Assert.AreEqual(1, FindObjectsOfType<RoomManager>().Length);
         //photonViewComponent = GetComponent<PhotonView>();
 
@@ -31,7 +36,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.Disconnect();
-        StartCoroutine(DoJoinOrCreateRoom("stg"));
+        StartCoroutine(DoJoinOrCreateRoom("stg1"));
     }
         #region All Room Settings
     public override void OnCreatedRoom()
@@ -141,13 +146,45 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CreateRoom(null, s_RoomOptions, TypedLobby.Default);
     }
+    
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log(newPlayer);
+      
+    }
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log(otherPlayer);
+        var playerGo = players.Find(x => x.name == otherPlayer.UserId);
+        players.Remove(playerGo);
+        targetGroup.RemoveMember(playerGo.transform);
+        //if (!players.))
+        //{
+        //    players.Add(newPlayerGo);
+        //    targetGroup.AddMember(newPlayerGo.transform, 1f, 2f);
+
+        //}
+        //players.Remove(newPlayer);
+        //targetGroup.AddMember(newPlayer.transform, 1f, 2f);
+
+    }
 
     #endregion
     #region Synchronization Code
     [PunRPC]
     IEnumerator SynchroniseGame()
     {
-        PhotonNetwork.Instantiate("Player Holder",new Vector3(),Quaternion.identity);
+        var newPlayerGo = PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity);
+
+        
+        if (!players.Contains(newPlayerGo))
+        {
+            players.Add(newPlayerGo);
+            targetGroup.AddMember(newPlayerGo.transform, 1f, 2f);
+
+        }
         while (PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1);
