@@ -77,7 +77,7 @@ public class PlayerMovementController : MonoBehaviour
     }
     public void Jump()
     {
-        if (currentJumps <= 0 || !photonView.IsMine)
+        if (currentJumps <= 0)
         {
             return;
         }

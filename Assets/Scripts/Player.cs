@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
+    PhotonView photonView;
     PlayerMovementController playerMovementController;
     PlayerInputController playerInputController;
     PlayerAttackGenerater attackGenerator;
@@ -17,11 +18,32 @@ public class Player : MonoBehaviour
     float nextFire = 0.0f;
     public List<Weapon> weapons = new();
     public Weapon currentWeapon;
+    private void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+        playerMovementController = GetComponent<PlayerMovementController>();
+        attackGenerator = GetComponent<PlayerAttackGenerater>();
+        slider = GetComponentInChildren<Slider>();
+    }
     private void OnEnable()
     {
         playerInputController = GetComponentInParent<PlayerInputController>();
-        playerMovementController = GetComponent<PlayerMovementController>();
-        attackGenerator = GetComponent<PlayerAttackGenerater>();
+        playerInputController.playerActions.Enable();
+        playerInputController.playerActions.Movement.started += Move;
+        playerInputController.playerActions.Movement.canceled += Move;
+        playerInputController.playerActions.Jump.started += Jump;
+        playerInputController.playerActions.Action.started += Fire;
+        health.OnGetAttack += GetAttack;
+    }
+    private void OnDisable()
+    {
+        playerInputController.playerActions.Disable();
+        playerMovementController = null;
+        playerInputController.playerActions.Movement.started -= Move;
+        playerInputController.playerActions.Movement.canceled -= Move;
+        playerInputController.playerActions.Jump.started -= Jump;
+        playerInputController.playerActions.Action.started -= Fire;
+        health.OnGetAttack -= GetAttack;
     }
     void SetWeaponTransform()
     {
@@ -45,23 +67,19 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private void Start()
-    {
-        playerInputController.playerActions.Movement.started += Move;
-        playerInputController.playerActions.Movement.canceled += Move;
-        playerInputController.playerActions.Jump.started += Jump;
-        playerInputController.playerActions.Action.started += Fire;
-        slider = GetComponentInChildren<Slider>();
-        health.OnGetAttack += GetAttack;
-    }
+
 
     private void GetAttack()
     {
+        if (!photonView.IsMine)
+            return;
         slider.value = health.currentHealth / health.totalHealth;
     }
 
     private void Fire(InputAction.CallbackContext obj)
     {
+        if (!photonView.IsMine)
+            return;
         if (Time.time > nextFire && currentWeapon != null)
         {
             nextFire = Time.time + currentWeapon.manager.bulletSpeed;
@@ -71,14 +89,12 @@ public class Player : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext obj)
     {
+        if (!photonView.IsMine)
+            return;
         playerMovementController.Jump();
     }
 
-    private void OnDisable()
-    {
-        playerMovementController = null;
-
-    }
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Bullet"))
@@ -100,22 +116,18 @@ public class Player : MonoBehaviour
             weapons.Add(currentWeapon);
             SetWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
-
-
-
         }
     }
     private void Move(InputAction.CallbackContext obj)
     {
-        playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
-
+        if (!photonView.IsMine)
+            return;
+            playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
         if (obj.ReadValue<Vector2>() != Vector2.zero)
         {
             playerDirection = obj.ReadValue<Vector2>();
             SetWeaponTransform();
         }
-
-
     }
 }
 [System.Serializable]

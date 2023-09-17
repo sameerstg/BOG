@@ -13,12 +13,4 @@ public class PlayerInputController : MonoBehaviour
         inputActions = new();
         playerActions = inputActions.Player;
     }
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
 }
