@@ -82,8 +82,12 @@ public class Player : MonoBehaviour
             return;
         if (Time.time > nextFire && currentWeapon != null)
         {
-            nextFire = Time.time + currentWeapon.manager.bulletSpeed;
+            nextFire = Time.time + currentWeapon.manager.fireRate;
             attackGenerator.Fire(playerMovementController.direction, playerDirection);
+        }
+        else
+        {
+            print("not firing");
         }
     }
 
