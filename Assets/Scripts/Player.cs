@@ -63,8 +63,6 @@ public class Player : MonoBehaviour
 
     private void GetAttack()
     {
-        if (!photonView.IsMine)
-            return;
         slider.value = health.currentHealth / health.totalHealth;
     }
 

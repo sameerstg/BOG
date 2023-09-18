@@ -541,7 +541,6 @@ MonoBehaviour:
   currentJumps: 0
   wallMoveDownSpeed: 1
   wallMoveDownSpeedLimit: 4
-  lookingDirection: {x: 0, y: 0}
 --- !u!70 &4768272752694850424
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
