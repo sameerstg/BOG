@@ -12,8 +12,6 @@ using UnityEngine.Assertions;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager _instance;
-    PhotonView photonViewComponent;
-    GameManager gm;
     public TextMeshProUGUI pingText;
 
     public CinemachineTargetGroup targetGroup;
@@ -33,7 +31,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         _instance = this;
         targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
         Assert.AreEqual(1, FindObjectsOfType<RoomManager>().Length);
-        //photonViewComponent = GetComponent<PhotonView>();
 
     }
     private void Start()

@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     PhotonView photonView;
     PlayerMovementController playerMovementController;
-    PlayerInputController playerInputController;
     PlayerAttackGenerater attackGenerator;
     public float weaponOffset;
     Vector2 playerDirection = Vector2.right;
@@ -26,30 +25,18 @@ public class Player : MonoBehaviour
         playerMovementController = GetComponent<PlayerMovementController>();
         attackGenerator = GetComponent<PlayerAttackGenerater>();
         slider = GetComponentInChildren<Slider>();
-        
     }
  
     private void OnEnable()
     {
-        playerInputController = GetComponentInParent<PlayerInputController>();
-        playerInputController.playerActions.Enable();
-        playerInputController.playerActions.Movement.started += Move;
-        playerInputController.playerActions.Movement.canceled += Move;
-        playerInputController.playerActions.Jump.started += Jump;
-        playerInputController.playerActions.Action.started += Fire;
         health.OnGetAttack += GetAttack;
     }
     private void OnDisable()
     {
-        playerInputController.playerActions.Disable();
         playerMovementController = null;
-        playerInputController.playerActions.Movement.started -= Move;
-        playerInputController.playerActions.Movement.canceled -= Move;
-        playerInputController.playerActions.Jump.started -= Jump;
-        playerInputController.playerActions.Action.started -= Fire;
         health.OnGetAttack -= GetAttack;
     }
-       
+
     void SetWeaponTransform()
     {
         if (currentWeapon != null)
@@ -81,10 +68,8 @@ public class Player : MonoBehaviour
         slider.value = health.currentHealth / health.totalHealth;
     }
 
-    private void Fire(InputAction.CallbackContext obj)
+    public void Fire(InputAction.CallbackContext obj)
     {
-        if (!photonView.IsMine)
-            return;
         if (Time.time > nextFire && currentWeapon != null)
         {
             nextFire = Time.time + currentWeapon.manager.fireRate;
@@ -92,14 +77,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jump(InputAction.CallbackContext obj)
+    public void Jump(InputAction.CallbackContext obj)
     {
-        if (!photonView.IsMine)
-            return;
         playerMovementController.Jump();
     }
-
-   
+    public void Move(InputAction.CallbackContext obj)
+    {
+        playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
+        if (obj.ReadValue<Vector2>() != Vector2.zero)
+        {
+            playerDirection = obj.ReadValue<Vector2>();
+            SetWeaponTransform();
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Bullet"))
@@ -123,20 +113,6 @@ public class Player : MonoBehaviour
             currentWeapon.transform.rotation = Quaternion.identity;
         }
     }
-    private void Move(InputAction.CallbackContext obj)
-    {
-        if (!photonView.IsMine)
-        {
-
-            return;
-        }
-            playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
-        if (obj.ReadValue<Vector2>() != Vector2.zero)
-        {
-            playerDirection = obj.ReadValue<Vector2>();
-            SetWeaponTransform();
-        }
-    }
 }
 [System.Serializable]
 public class Health
@@ -149,7 +125,6 @@ public class Health
         this.totalHealth = health;
         currentHealth = totalHealth;
     }
-
     public void GetDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
