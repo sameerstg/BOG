@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer.UserId, "newusername" });
+        PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer.UserId, PlayerPrefs.GetString("gamerTag") });
         if (PhotonNetwork.IsMasterClient)
         {
             WeaponGenerator._instance.StartSpawning();
@@ -178,13 +178,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
 public class PlayerDetails
 {
     public string id;
-    public string name;
+    public string gamerTag;
     public GameObject player;
+    public int life = 3;
 
     public PlayerDetails(string id, string name, GameObject player)
     {
         this.id = id;
-        this.name = name;
+        this.gamerTag = name;
         this.player = player;
+        life = 3;
     }
 }

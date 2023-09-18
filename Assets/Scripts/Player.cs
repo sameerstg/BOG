@@ -1,5 +1,6 @@
 using Photon.Pun;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,10 +18,16 @@ public class Player : MonoBehaviour
     float nextFire = 0.0f;
     public List<Weapon> weapons = new();
     public Weapon currentWeapon;
+    public PlayerDetails playerDetails;
+    public TextMeshProUGUI lifeText, gamerTagText;
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
-        RoomManager._instance.players.Add(new PlayerDetails((string)photonView.InstantiationData[0],(string) photonView.InstantiationData[1],gameObject));
+        playerDetails = new PlayerDetails((string)photonView.InstantiationData[0], (string)photonView.InstantiationData[1], gameObject);
+        lifeText.text = playerDetails.life.ToString();
+        gamerTagText.text = playerDetails.gamerTag;
+
+        RoomManager._instance.players.Add(playerDetails);
         RoomManager._instance.targetGroup.AddMember(transform,1,3);
         playerMovementController = GetComponent<PlayerMovementController>();
         attackGenerator = GetComponent<PlayerAttackGenerater>();
@@ -98,10 +105,10 @@ public class Player : MonoBehaviour
         {
             health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
         }
-        else if (collision.collider.CompareTag("Weapon"))
+        else if (collision.collider.CompareTag("Weapon")  )
         {
             currentWeapon?.gameObject.SetActive(false);
-            collision.collider.tag = "Untagged";
+            
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
 
@@ -110,6 +117,26 @@ public class Player : MonoBehaviour
             weapons.Add(currentWeapon);
             SetWeaponTransform(true);
             currentWeapon.transform.rotation = Quaternion.identity;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        if (collision.CompareTag("Finish"))
+        {
+            playerDetails.life -= 1;
+            lifeText.text = playerDetails.life.ToString();
+            if (playerDetails.life >0)
+            {
+                transform.position = new Vector2();
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

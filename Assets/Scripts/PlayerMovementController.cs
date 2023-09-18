@@ -1,7 +1,4 @@
 using Photon.Pun;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
@@ -137,16 +134,6 @@ public class PlayerMovementController : MonoBehaviour
         rb.gravityScale = 1;
         canWallMoveDown = false;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-        if (collision.CompareTag("Finish"))
-        {
-            transform.position = new Vector2();
-        }
-    }
+  
 
 }

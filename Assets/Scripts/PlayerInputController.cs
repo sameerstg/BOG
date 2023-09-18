@@ -26,6 +26,14 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Jump.started += Jump;
         playerActions.Action.started += Fire;
     }
+    private void OnDisable()
+    {
+        playerActions.Disable();
+        playerActions.Movement.started -= Move;
+        playerActions.Movement.canceled -= Move;
+        playerActions.Jump.started -= Jump;
+        playerActions.Action.started -= Fire;
+    }
 
     private void Fire(InputAction.CallbackContext context)
     {
@@ -49,12 +57,5 @@ public class PlayerInputController : MonoBehaviour
         player.Move(context);
     }
 
-    private void OnDisable()
-    {
-        playerActions.Disable();
-        playerActions.Movement.started -= Move;
-        playerActions.Movement.canceled -= Move;
-        playerActions.Jump.started -= Jump;
-        playerActions.Action.started -= Fire;
-    }
+  
 }

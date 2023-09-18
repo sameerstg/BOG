@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public WeaponManager manager;
     public SpriteRenderer spriteRenderer;
     public PhotonView photonView;
+    
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
