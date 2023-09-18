@@ -67,33 +67,34 @@ public class Player : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext obj)
     {
-        playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
+        try
+        {
+            playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
+
+        }
+        catch (System.Exception)
+        {
+
+            //throw;
+        }
         if (obj.ReadValue<Vector2>() != Vector2.zero)
         {
-            bool shouldStreamDirectionOfWeapon = !(playerDirection == obj.ReadValue<Vector2>());
             playerDirection = obj.ReadValue<Vector2>();
-            SetWeaponTransform(shouldStreamDirectionOfWeapon);
         }
     }
-    void SetWeaponTransform(bool streamDirectionOfWeapon)
+    public void SetWeaponTransform()
     {
         if (currentWeapon != null)
         {
             if (playerDirection.x > 0)
             {
                 currentWeapon.transform.position = transform.position + Vector3.right * weaponOffset;
-                if (streamDirectionOfWeapon)
-                {
-                    currentWeapon.SetDirection(false);
-                }
+                    currentWeapon.SetDirection(false, currentWeapon.transform.position);
             }
             else
             {
                 currentWeapon.transform.position = transform.position + Vector3.left * weaponOffset;
-                if (streamDirectionOfWeapon)
-                {
-                    currentWeapon.SetDirection(true);
-                }
+                    currentWeapon.SetDirection(true, currentWeapon.transform.position);
             }
 
         }
@@ -113,18 +114,13 @@ public class Player : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
 
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
-            currentWeapon.transform.parent = transform;
             weapons.Add(currentWeapon);
-            SetWeaponTransform(true);
+            SetWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
         if (collision.CompareTag("Finish"))
         {
             playerDetails.life -= 1;
@@ -135,6 +131,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                transform.position = new Vector2();
                 gameObject.SetActive(false);
             }
         }

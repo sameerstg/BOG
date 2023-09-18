@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public static RoomManager _instance;
     public TextMeshProUGUI pingText;
 
-    public CinemachineTargetGroup targetGroup;
+    internal CinemachineTargetGroup targetGroup;
     public List<PlayerDetails> players = new();
 
     public bool DidTimeout { private set; get; }
@@ -51,6 +51,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             WeaponGenerator._instance.StartSpawning();
         }
+        StartCoroutine(SynchroniseGame());
     }
 
     public void JoinOrCreateRoom(string preferredRoomName)
@@ -158,16 +159,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         while (PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1);
-            /*try
-            {
-
-            pingText.text = PhotonNetwork.GetPing().ToString();
-            }
-            catch (System.Exception)
-            {
-
-                
-            }*/
+            pingText.text ="Ping : " +PhotonNetwork.GetPing().ToString();
         }
     }
 

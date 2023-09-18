@@ -14,13 +14,18 @@ public class Weapon : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         photonView = GetComponent<PhotonView>();
     }
-    public void SetDirection(bool flip)
+    public void SetDirection(bool flip,Vector2 position)
     {
-        photonView.RPC(nameof(SetDirectionRPC), RpcTarget.All, new object[] { flip });
+        //if (flip == spriteRenderer.flipX)
+        //{
+        //    return;
+        //}
+        photonView.RPC(nameof(SetDirectionRPC), RpcTarget.All, new object[] { flip, position });
     }
     [PunRPC]
-    public void SetDirectionRPC(bool flip)
+    public void SetDirectionRPC(bool flip,Vector2 pos)
     {
         spriteRenderer.flipX= flip;
+        transform.position = pos;
     }
 }

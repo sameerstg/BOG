@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public Player player;
     protected Rigidbody2D rb;
 
     public float moveSpeed;
@@ -24,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     public float wallMoveDownSpeedLimit;
     private void Awake()
     {
+        player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         photonView = GetComponent<PhotonView>();
     }
@@ -79,6 +81,8 @@ public class PlayerMovementController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, Vector2.ClampMagnitude(rb.velocity, wallMoveDownSpeedLimit).y);
             }
         }
+        player.SetWeaponTransform();
+
     }
     public void Jump()
     {
