@@ -23,7 +23,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         MaxPlayers = 4,
         EmptyRoomTtl = 5,
         PublishUserId = true,
-
     };
 
     void Awake()
@@ -48,6 +47,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         PhotonNetwork.Instantiate("Player Holder", new Vector3(), Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer.UserId, "newusername" });
+        if (PhotonNetwork.IsMasterClient)
+        {
+            WeaponGenerator._instance.StartSpawning();
+        }
     }
 
     public void JoinOrCreateRoom(string preferredRoomName)

@@ -675,14 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa430709df99de419217fef99ae23a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefabs:
-  - {fileID: 2015416867779723716, guid: 55903ee8d0a0a7241a7c31e278b58eee, type: 3}
-  - {fileID: 2015416867779723716, guid: 0abf85f4c327b6242b811cf0eaf91311, type: 3}
-  - {fileID: 2015416867779723716, guid: 8ecbe6a3e84065a49bbb3a3406eca584, type: 3}
-  - {fileID: 2015416867779723716, guid: 463862b004aa34649aaf2beae6b6da80, type: 3}
-  - {fileID: 2015416867779723716, guid: 15fcb945150ad114d97a256528fc04af, type: 3}
-  - {fileID: 2015416867779723716, guid: f2d4582d12dbba24f952309c0cf7a097, type: 3}
-  - {fileID: 2015416867779723716, guid: 8cf3769714c2ccc40a7e17166fac711b, type: 3}
+  gunPrefabs: []
+  generationDelay: 8
 --- !u!1 &1465307816
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pingText: {fileID: 0}
   targetGroup: {fileID: 0}
+  players: []
 --- !u!114 &1465307819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +902,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3063791372243727683, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623854515287010362, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605591065060660674, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605591065060660674, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4768272752983003094, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
       propertyPath: m_Name
       value: Player Holder
@@ -959,8 +970,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4892757568393535918, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892757568393535918, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005043634446180956, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059002127068915440, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174544214237079626, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270114821179759980, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828980327217303665, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195267867023041600, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7731928202725519774, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
       propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969224248951985035, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579736699515202700, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579736699515202700, guid: 385746fcfa6b98147b77c27efc5be637, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

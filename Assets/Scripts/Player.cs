@@ -37,28 +37,7 @@ public class Player : MonoBehaviour
         health.OnGetAttack -= GetAttack;
     }
 
-    void SetWeaponTransform()
-    {
-        if (currentWeapon != null)
-        {
-            if (playerDirection.x > 0)
-            {
-                currentWeapon.transform.position = transform.position + Vector3.right * weaponOffset;
-            }
-            else
-            {
-                currentWeapon.transform.position = transform.position + Vector3.left * weaponOffset;
-            }
-            if (playerDirection.x > 0)
-            {
-                currentWeapon.spriteRenderer.flipX = false;
-            }
-            else
-            {
-                currentWeapon.spriteRenderer.flipX = true;
-            }
-        }
-    }
+   
 
 
     private void GetAttack()
@@ -84,22 +63,44 @@ public class Player : MonoBehaviour
         playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
         if (obj.ReadValue<Vector2>() != Vector2.zero)
         {
+            bool shouldStreamDirectionOfWeapon = !(playerDirection == obj.ReadValue<Vector2>());
             playerDirection = obj.ReadValue<Vector2>();
-            SetWeaponTransform();
+            SetWeaponTransform(shouldStreamDirectionOfWeapon);
+        }
+    }
+    void SetWeaponTransform(bool streamDirectionOfWeapon)
+    {
+        if (currentWeapon != null)
+        {
+            if (playerDirection.x > 0)
+            {
+                currentWeapon.transform.position = transform.position + Vector3.right * weaponOffset;
+                if (streamDirectionOfWeapon)
+                {
+                    currentWeapon.SetDirection(false);
+                }
+            }
+            else
+            {
+                currentWeapon.transform.position = transform.position + Vector3.left * weaponOffset;
+                if (streamDirectionOfWeapon)
+                {
+                    currentWeapon.SetDirection(true);
+                }
+            }
+
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.collider.CompareTag("Bullet"))
         {
             health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
         }
         else if (collision.collider.CompareTag("Weapon"))
         {
-            if (currentWeapon != null)
-            {
-                currentWeapon.gameObject.SetActive(false);
-            }
+            currentWeapon?.gameObject.SetActive(false);
             collision.collider.tag = "Untagged";
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
             currentWeapon.transform.parent = transform;
             weapons.Add(currentWeapon);
-            SetWeaponTransform();
+            SetWeaponTransform(true);
             currentWeapon.transform.rotation = Quaternion.identity;
         }
     }

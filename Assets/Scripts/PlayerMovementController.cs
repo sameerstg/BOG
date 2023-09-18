@@ -32,21 +32,33 @@ public class PlayerMovementController : MonoBehaviour
     }
     private void Start()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         currentJumps = totalJumps;
     }
     private void FixedUpdate()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         Movevement();
     }
     private void Update()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         ClampSpeed();
     }
     internal void SetMoveDirection(Vector2 direction) => this.direction = direction;
 
     private void Movevement()
     {
-        if (direction == Vector2.zero || !photonView.IsMine)
+        if (direction == Vector2.zero)
         {
             return;
         }
@@ -82,6 +94,10 @@ public class PlayerMovementController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (collision.collider.CompareTag("Land"))
         {
 
@@ -102,6 +118,10 @@ public class PlayerMovementController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (collision.collider.CompareTag("Wall"))
         {
             canWallMoveDown = true;
@@ -110,11 +130,19 @@ public class PlayerMovementController : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         rb.gravityScale = 1;
         canWallMoveDown = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (collision.CompareTag("Finish"))
         {
             transform.position = new Vector2();
