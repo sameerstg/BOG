@@ -53,7 +53,15 @@ public class PlayerMovementController : MonoBehaviour
         }
         ClampSpeed();
     }
-    internal void SetMoveDirection(Vector2 direction) => this.direction = direction;
+    internal void SetMoveDirection(Vector2 direction)
+    {
+        if (direction == this.direction )
+        {
+            return;
+        }
+        player.SetWeaponTransform();
+        this.direction = direction;
+    }
 
     private void Movevement()
     {
@@ -81,7 +89,6 @@ public class PlayerMovementController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, Vector2.ClampMagnitude(rb.velocity, wallMoveDownSpeedLimit).y);
             }
         }
-        player.SetWeaponTransform();
 
     }
     public void Jump()

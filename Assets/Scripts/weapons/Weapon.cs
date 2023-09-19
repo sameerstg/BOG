@@ -17,10 +17,6 @@ public class Weapon : MonoBehaviour
     }
     public void SetDirection(bool flip,Vector2 position)
     {
-        //if (flip == spriteRenderer.flipX)
-        //{
-        //    return;
-        //}
         photonView.RPC(nameof(SetDirectionRPC), RpcTarget.All, new object[] { flip, position });
     }
     [PunRPC]
@@ -29,16 +25,18 @@ public class Weapon : MonoBehaviour
         spriteRenderer.flipX= flip;
         transform.position = pos;
     }
-    public void Equip()
+    public void Equip(string id)
     {
-        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer);
+        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer,id);
     }
     [PunRPC]
-    public void EquipRPC()
+    public void EquipRPC(string id)
     {
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<CircleCollider2D>());
+        transform.parent = RoomManager._instance.players.Find(p => p.id == id)?.player.transform;
+      
     }
     public void Destroy()
     {
