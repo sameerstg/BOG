@@ -24,7 +24,9 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Movement.started += Move;
         playerActions.Movement.canceled += Move;
         playerActions.Jump.started += Jump;
-        playerActions.Action.started += Fire;
+        playerActions.Attack1.started += Fire;
+        playerActions.Action.started += _ => { player.isActionPressed = true; };
+        playerActions.Action.canceled += _ => { player.isActionPressed = false; };
     }
     private void OnDisable()
     {
@@ -32,7 +34,9 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Movement.started -= Move;
         playerActions.Movement.canceled -= Move;
         playerActions.Jump.started -= Jump;
-        playerActions.Action.started -= Fire;
+        playerActions.Attack1.started -= Fire;
+        playerActions.Action.started -= _ => { player.isActionPressed = true; };
+        playerActions.Action.canceled -= _ => { player.isActionPressed = false; };
     }
 
     private void Fire(InputAction.CallbackContext context)

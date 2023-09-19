@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public Weapon currentWeapon;
     public PlayerDetails playerDetails;
     public TextMeshProUGUI lifeText, gamerTagText;
+    internal bool isActionPressed;
+
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
@@ -106,18 +108,7 @@ public class Player : MonoBehaviour
         {
             health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
         }
-        else if (collision.collider.CompareTag("Weapon")  )
-        {
-            currentWeapon?.gameObject.SetActive(false);
-            
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-
-            currentWeapon = collision.gameObject.GetComponent<Weapon>();
-            weapons.Add(currentWeapon);
-            SetWeaponTransform();
-            currentWeapon.transform.rotation = Quaternion.identity;
-        }
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -134,6 +125,21 @@ public class Player : MonoBehaviour
                 transform.position = new Vector2();
                 gameObject.SetActive(false);
             }
+        }
+        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon") && isActionPressed)
+        {
+            currentWeapon?.gameObject.SetActive(false);
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            currentWeapon = collision.gameObject.GetComponent<Weapon>();
+            weapons.Add(currentWeapon);
+            SetWeaponTransform();
+            currentWeapon.transform.rotation = Quaternion.identity;
         }
     }
 }
