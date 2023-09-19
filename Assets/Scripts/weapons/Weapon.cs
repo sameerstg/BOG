@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,5 +28,26 @@ public class Weapon : MonoBehaviour
     {
         spriteRenderer.flipX= flip;
         transform.position = pos;
+    }
+    public void Equip()
+    {
+        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer);
+    }
+    [PunRPC]
+    public void EquipRPC()
+    {
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<BoxCollider2D>());
+        Destroy(GetComponent<CircleCollider2D>());
+    }
+    public void Destroy()
+    {
+        photonView.RPC(nameof(DestroyRPC), RpcTarget.AllBufferedViaServer);
+    }
+    [PunRPC]
+    public void DestroyRPC()
+    {
+        WeaponGenerator._instance.allGenerated.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

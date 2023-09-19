@@ -133,13 +133,12 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Weapon") && isActionPressed)
         {
             currentWeapon?.gameObject.SetActive(false);
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
+            currentWeapon.Equip();
             weapons.Add(currentWeapon);
             SetWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
+            isActionPressed = false;
         }
     }
 }

@@ -9,6 +9,7 @@ public class WeaponGenerator : MonoBehaviour
 
     public static WeaponGenerator _instance;
     public List<GameObject> gunPrefabs = new List<GameObject>();
+    public List<GameObject> allGenerated = new List<GameObject>();
     public float generationDelay;
     private void Awake()
     {
@@ -29,9 +30,14 @@ public class WeaponGenerator : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5f);
+            while (allGenerated.Count == PhotonNetwork.CurrentRoom.PlayerCount)
+            {
+             yield return new WaitForSeconds(1f);
+                
+            }
             int randomItem = UnityEngine.Random.Range(0, gunPrefabs.Count);
             Vector2 pos = new Vector2(0, 2);
-            PhotonNetwork.Instantiate($"Weapons\\{gunPrefabs[randomItem].name}", pos, gunPrefabs[randomItem].transform.rotation);
+            allGenerated.Add(PhotonNetwork.Instantiate($"Weapons\\{gunPrefabs[randomItem].name}", pos, gunPrefabs[randomItem].transform.rotation));
 
         }
     }

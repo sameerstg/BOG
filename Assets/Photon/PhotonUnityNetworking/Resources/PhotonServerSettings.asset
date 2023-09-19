@@ -47,6 +47,8 @@ MonoBehaviour:
   - SyncCamera
   - GenerateRandomItem
   - SetDirectionRPC
+  - EquipRPC
+  - DestroyRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
