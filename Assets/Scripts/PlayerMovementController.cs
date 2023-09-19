@@ -51,7 +51,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        ClampSpeed();
+        //ClampSpeed();
     }
     internal void SetMoveDirection(Vector2 direction)
     {
@@ -69,7 +69,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        rb.AddForce(direction * moveSpeed, ForceMode2D.Impulse);
+        //rb.AddForce(direction * moveSpeed, ForceMode2D.Impulse);
+        transform.Translate(direction.normalized * moveSpeed * 0.05f);
 
     }
     void ClampSpeed()
@@ -97,7 +98,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * jumpPower * 0.2f, ForceMode2D.Impulse);
         currentJumps -= 1;
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -14,8 +14,14 @@ public class Projectile : MonoBehaviour
     {
         rb.velocity = dir * moveSpeed;
     }
-       private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    { 
+        StreamDestroy(); 
     }
+    void StreamDestroy() 
+    { 
+        GetComponent<PhotonView>().RPC(nameof(DestroyRPC), RpcTarget.AllBufferedViaServer); 
+    }
+    [PunRPC] public void DestroyRPC() { Destroy(this); }
 }

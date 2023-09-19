@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Bullet"))
         {
             health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
+            GetComponent<Rigidbody2D>().AddForce(collision.otherRigidbody.velocity.normalized * 100f * (health.totalHealth / health.currentHealth));
         }
        
     }
