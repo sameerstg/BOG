@@ -5,6 +5,7 @@ using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,7 +13,7 @@ using UnityEngine.Assertions;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager _instance;
-    public TextMeshProUGUI pingText;
+    public TextMeshProUGUI pingText,connectionStatus;
 
     internal CinemachineTargetGroup targetGroup;
     public List<PlayerDetails> players = new();
@@ -27,6 +28,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        connectionStatus.text = "Status : "+ "";
         _instance = this;
         targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
         Assert.AreEqual(1, FindObjectsOfType<RoomManager>().Length);
@@ -41,7 +43,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        Debug.Log("Created Room");
+        connectionStatus.text=("Created Room");
     }
     public override void OnJoinedRoom()
     {
@@ -82,7 +84,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
 
 
-    static IEnumerator DoJoinOrCreateRoom(string preferredRoomName)
+     IEnumerator DoJoinOrCreateRoom(string preferredRoomName)
     {
         if (PhotonNetwork.InRoom)
         {
@@ -91,7 +93,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.IsConnected)
         {
-            Debug.Log("Connecting to server");
+            connectionStatus.text = "Status : "+ "Connecting to server";
             PhotonNetwork.ConnectUsingSettings();
         }
 
@@ -102,7 +104,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
 
         if (!PhotonNetwork.InLobby && PhotonNetwork.NetworkClientState != ClientState.JoiningLobby)
-            Debug.Log($"Connecting to server ,state ={PhotonNetwork.NetworkClientState}");
+            connectionStatus.text = "Status : "+ $"Connecting to server ,state ={PhotonNetwork.NetworkClientState}";
         {
             PhotonNetwork.JoinLobby();
 
@@ -117,13 +119,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (preferredRoomName != null)
         {
-            Debug.Log("Joining or creating Room");
+            connectionStatus.text = "Status : "+ "Joining or creating Room";
 
             bool isJoined = PhotonNetwork.JoinOrCreateRoom(preferredRoomName, s_RoomOptions, TypedLobby.Default);
         }
         else
         {
-            Debug.Log("Joined Random Room");
+            connectionStatus.text = "Status : "+ "Joined Random Room";
 
             PhotonNetwork.JoinRandomRoom();
         }
@@ -137,7 +139,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Room Created on joining fail");
+        connectionStatus.text = "Status : "+ "Room Created on joining fail";
         PhotonNetwork.CreateRoom(null, s_RoomOptions, TypedLobby.Default);
     }
 
@@ -147,7 +149,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         var leavingPlayer = players.Find(x => x.id == otherPlayer.UserId);
         if (leavingPlayer != null)
         {
-            targetGroup.RemoveMember(leavingPlayer.player.transform);
+           targetGroup.RemoveMember(leavingPlayer.player.transform);
             players.Remove(leavingPlayer);
         }
 
@@ -156,6 +158,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     #region Synchronization Code
     IEnumerator SynchroniseGame()
     {
+        yield return new WaitForSeconds(1);
+        connectionStatus.text =  "";
         while (PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1);
