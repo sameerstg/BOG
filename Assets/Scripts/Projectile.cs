@@ -9,7 +9,11 @@ public class Projectile : MonoBehaviour
     Vector2 direction = Vector2.zero;
     [SerializeField] Rigidbody2D rb;
     public int damage;
-
+    PhotonView photonView;
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
     public void SetDirection(Vector2 dir)
     {
         rb.velocity = dir * moveSpeed;
@@ -20,8 +24,8 @@ public class Projectile : MonoBehaviour
         StreamDestroy(); 
     }
     void StreamDestroy() 
-    { 
-        GetComponent<PhotonView>().RPC(nameof(DestroyRPC), RpcTarget.AllBufferedViaServer); 
+    {
+        photonView.RPC(nameof(DestroyRPC), RpcTarget.AllBufferedViaServer); 
     }
-    [PunRPC] public void DestroyRPC() { Destroy(this); }
+    [PunRPC] public void DestroyRPC() { Destroy(gameObject); }
 }
