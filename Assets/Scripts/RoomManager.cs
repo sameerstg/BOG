@@ -166,8 +166,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
             pingText.text ="Ping : " +PhotonNetwork.GetPing().ToString();
         }
     }
-
-    #endregion
+    public void PlayerHit(string id,float damage)
+    {
+        photonView.RPC(nameof(PlayerHitRpc), RpcTarget.AllBufferedViaServer,id,damage);
+    }
+    [PunRPC]
+    public void PlayerHitRpc(string id, float damage)
+    {
+        players.Find(x => x.id == id).player.GetComponent<Player>().health.GetDamage(damage);
+    }
+       #endregion
 
 }
 [System.Serializable]
