@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -45,9 +46,20 @@ public class Player : MonoBehaviour
         playerMovementController = null;
         health.OnGetAttack -= GetAttack;
     }
-
-   
-
+    public void Die()
+    {
+        playerDetails.life -= 1;
+        lifeText.text = playerDetails.life.ToString();
+        if (photonView.IsMine)
+        {
+            transform.position = new Vector2();
+        }
+        if (playerDetails.life <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+        health.Refill();
+    }
 
     private void GetAttack()
     {
@@ -112,19 +124,11 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!photonView.IsMine)
+            return;
         if (collision.CompareTag("Finish"))
         {
-            playerDetails.life -= 1;
-            lifeText.text = playerDetails.life.ToString();
-            if (playerDetails.life >0)
-            {
-                transform.position = new Vector2();
-            }
-            else
-            {
-                transform.position = new Vector2();
-                gameObject.SetActive(false);
-            }
+            RoomManager._instance.PlayerDie(playerDetails.id);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -150,10 +154,14 @@ public class Health
 {
     public float totalHealth;
     public float currentHealth;
-    public OnGetAttack OnGetAttack;
+    public DelegateFunc OnGetAttack;
     public Health(int health)
     {
         this.totalHealth = health;
+        currentHealth = totalHealth;
+    }
+    public void Refill()
+    {
         currentHealth = totalHealth;
     }
     public void GetDamage(float damageAmount)
@@ -166,4 +174,4 @@ public class Health
         OnGetAttack();
     }
 }
-public delegate void OnGetAttack();
+public delegate void DelegateFunc();

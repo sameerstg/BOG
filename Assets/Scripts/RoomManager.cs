@@ -175,7 +175,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         players.Find(x => x.id == id).player.GetComponent<Player>().health.GetDamage(damage);
     }
-       #endregion
+    public void PlayerDie(string id)
+    {
+        photonView.RPC(nameof(PlayerFellRpc), RpcTarget.AllBufferedViaServer, id);
+    }
+    [PunRPC]
+    public void PlayerFellRpc(string id)
+    {
+        players.Find(x => x.id == id).player.GetComponent<Player>().Die();
+    }
+    #endregion
 
 }
 [System.Serializable]
