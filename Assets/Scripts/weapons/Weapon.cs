@@ -26,17 +26,16 @@ public class Weapon : MonoBehaviour
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<CircleCollider2D>());
         PlayerDetails player = RoomManager._instance.players.Find(p => p.id == id);
-        if (playerDirection.x> 0)
+        if (player == null)
         {
-            transform.localScale = new Vector3(1, transform.lossyScale.y, transform.lossyScale.z);
+            return;
         }
-        else
-        {
-            transform.localScale = new Vector3(-1, transform.lossyScale.y, transform.lossyScale.z);
-
-        }
-        transform.position = (Vector2)player?.player.transform.position +(playerDirection * manager.weaponOffset);
-        transform.parent =player?.player.GetComponentInChildren<SpriteRenderer>().transform;
+        var body = player.player.GetComponentInChildren<SpriteRenderer>().gameObject;
+        var bodyScale = body.transform.localScale;
+        body.transform.localScale= new Vector3(1,1,1);
+        transform.position = (Vector2)body.transform.position + (Vector2.right * manager.weaponOffset);
+        transform.parent = body.transform;
+        body.transform.localScale = bodyScale;
     }
     public void Destroy()
     {
