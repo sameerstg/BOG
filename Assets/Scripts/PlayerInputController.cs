@@ -14,6 +14,7 @@ public class PlayerInputController : MonoBehaviour
     private void Awake()
     {
         photonView =GetComponent<PhotonView>();
+        
         inputActions = new();
         playerActions = inputActions.Player;
         player = GetComponent<Player>();

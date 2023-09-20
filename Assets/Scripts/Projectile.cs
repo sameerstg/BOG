@@ -20,7 +20,11 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) 
-    { 
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         StreamDestroy(); 
     }
     void StreamDestroy() 

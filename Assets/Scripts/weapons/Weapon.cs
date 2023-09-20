@@ -15,28 +15,28 @@ public class Weapon : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         photonView = GetComponent<PhotonView>();
     }
-    public void SetDirection(bool flip,Vector2 position)
+      public void Equip(string id,Vector2 playerDirection)
     {
-        photonView.RPC(nameof(SetDirectionRPC), RpcTarget.All, new object[] { flip, position });
+        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer,id, playerDirection);
     }
     [PunRPC]
-    public void SetDirectionRPC(bool flip,Vector2 pos)
-    {
-        spriteRenderer.flipX= flip;
-        transform.position = pos;
-    }
-    public void Equip(string id)
-    {
-        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer,id);
-    }
-    [PunRPC]
-    public void EquipRPC(string id)
+    public void EquipRPC(string id, Vector2 playerDirection)
     {
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<CircleCollider2D>());
-        transform.parent = RoomManager._instance.players.Find(p => p.id == id)?.player.transform;
-      
+        PlayerDetails player = RoomManager._instance.players.Find(p => p.id == id);
+        if (playerDirection.x> 0)
+        {
+            transform.localScale = new Vector3(1, transform.lossyScale.y, transform.lossyScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.lossyScale.y, transform.lossyScale.z);
+
+        }
+        transform.position = (Vector2)player?.player.transform.position +(playerDirection * manager.weaponOffset);
+        transform.parent =player?.player.GetComponentInChildren<SpriteRenderer>().transform;
     }
     public void Destroy()
     {

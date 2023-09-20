@@ -14,5 +14,6 @@ public class WeaponManager : ScriptableObject
     public float explosionRadius;
     public float explosionForce;
     public float upwordDisplace;
+    public float weaponOffset = 1;
     //  public GameObject[] weaponskin;
 }

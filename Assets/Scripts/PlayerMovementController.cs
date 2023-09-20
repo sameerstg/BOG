@@ -16,7 +16,7 @@ public class PlayerMovementController : MonoBehaviour
     public int totalJumps;
     public int currentJumps;
     internal Vector2 direction;
-    bool canWallMoveDown;
+    bool onWall;
     PhotonView photonView;
     [Space]
     [Space]
@@ -25,9 +25,14 @@ public class PlayerMovementController : MonoBehaviour
     public float wallMoveDownSpeedLimit;
     private void Awake()
     {
+        photonView = GetComponent<PhotonView>();
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
-        photonView = GetComponent<PhotonView>();
     }
     private void Start()
     {
@@ -51,7 +56,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        //ClampSpeed();
+        ClampSpeed();
     }
     internal void SetMoveDirection(Vector2 direction)
     {
@@ -59,7 +64,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        player.SetWeaponTransform();
         this.direction = direction;
     }
 
@@ -69,16 +73,10 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        //rb.AddForce(direction * moveSpeed, ForceMode2D.Impulse);
         transform.Translate(direction.normalized * moveSpeed * 0.05f);
-
     }
     void ClampSpeed()
     {
-        if (rb.velocity.SqrMagnitude() >= moveMaxSpeed && photonView.IsMine)
-        {
-            rb.velocity = new Vector2(Vector2.ClampMagnitude(rb.velocity, moveMaxSpeed).x, rb.velocity.y);
-        }
         if (rb.velocity.y > jumpMaxSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, Vector2.ClampMagnitude(rb.velocity, jumpMaxSpeed).y);
@@ -115,6 +113,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         if (collision.collider.CompareTag("Wall"))
         {
+            onWall = true;
             currentJumps = totalJumps;
             rb.gravityScale = 0;
 
@@ -133,8 +132,8 @@ public class PlayerMovementController : MonoBehaviour
         }
         if (collision.collider.CompareTag("Wall"))
         {
-            canWallMoveDown = true;
-            rb.AddForce(Vector2.down * wallMoveDownSpeed, ForceMode2D.Impulse);
+            onWall = true;
+            //rb.AddForce(Vector2.down * wallMoveDownSpeed, ForceMode2D.Impulse);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -144,7 +143,7 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
         rb.gravityScale = 1;
-        canWallMoveDown = false;
+        onWall = false;
     }
   
 

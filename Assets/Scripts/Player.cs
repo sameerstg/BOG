@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     PlayerMovementController playerMovementController;
     PlayerAttackGenerater attackGenerator;
     public float weaponOffset;
-    Vector2 playerDirection = Vector2.right;
+    public Vector2 playerDirection = Vector2.right;
     public Health health;
     Slider slider;
     [SerializeField] float fireRate = 0.5f;
@@ -21,19 +21,19 @@ public class Player : MonoBehaviour
     public PlayerDetails playerDetails;
     public TextMeshProUGUI lifeText, gamerTagText;
     internal bool isActionPressed;
-
+    public GameObject body;
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
         playerDetails = new PlayerDetails((string)photonView.InstantiationData[0], (string)photonView.InstantiationData[1], gameObject);
         lifeText.text = playerDetails.life.ToString();
         gamerTagText.text = playerDetails.gamerTag;
-
         RoomManager._instance.players.Add(playerDetails);
         RoomManager._instance.targetGroup.AddMember(transform,1,3);
         playerMovementController = GetComponent<PlayerMovementController>();
         attackGenerator = GetComponent<PlayerAttackGenerater>();
         slider = GetComponentInChildren<Slider>();
+        body = GetComponentInChildren<SpriteRenderer>().gameObject;
     }
  
     private void OnEnable()
@@ -72,38 +72,37 @@ public class Player : MonoBehaviour
         try
         {
             playerMovementController.SetMoveDirection(obj.ReadValue<Vector2>());
-
         }
         catch (System.Exception)
         {
-
             //throw;
         }
-        if (obj.ReadValue<Vector2>() != Vector2.zero)
+        if (obj.ReadValue<Vector2>() != Vector2.zero && obj.ReadValue<Vector2>() != playerDirection)
         {
-            playerDirection = obj.ReadValue<Vector2>();
+            playerDirection = obj.ReadValue<Vector2>().normalized;
+            playerDirection.y = 0;
+            SetBodyAndWeaponTransform();
         }
     }
-    public void SetWeaponTransform()
+    public void SetBodyAndWeaponTransform()
     {
-        if (currentWeapon != null)
+        if (playerDirection.x > 0)
         {
-            if (playerDirection.x > 0)
-            {
-                currentWeapon.transform.position = transform.position + Vector3.right * weaponOffset;
-                    currentWeapon.SetDirection(false, currentWeapon.transform.position);
-            }
-            else
-            {
-                currentWeapon.transform.position = transform.position + Vector3.left * weaponOffset;
-                    currentWeapon.SetDirection(true, currentWeapon.transform.position);
-            }
-
+            body.transform.localScale = new Vector3(1, transform.lossyScale.y, transform.lossyScale.z);
         }
+        else if (playerDirection.x < 0)
+        {
+            body.transform.localScale = new Vector3(-1, transform.lossyScale.y, transform.lossyScale.z);
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (collision.collider.CompareTag("Bullet"))
         {
             health.GetDamage(collision.collider.GetComponent<Projectile>().damage);
@@ -127,17 +126,20 @@ public class Player : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon") && isActionPressed)
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        if (collision.CompareTag("Weapon") && isActionPressed&& currentWeapon == null)
         {
             currentWeapon?.gameObject.SetActive(false);
             currentWeapon = collision.gameObject.GetComponent<Weapon>();
-            currentWeapon.Equip(playerDetails.id);
+            currentWeapon.Equip(playerDetails.id,playerDirection);
             weapons.Add(currentWeapon);
-            SetWeaponTransform();
+            //SetBodyAndWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
             isActionPressed = false;
         }

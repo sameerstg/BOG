@@ -22,3 +22,4 @@ MonoBehaviour:
   explosionRadius: 100
   explosionForce: 0
   upwordDisplace: 0
+  weaponOffset: 1
