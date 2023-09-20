@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        SetDirection((Vector2)photonView?.InstantiationData[0]);
+        StartCoroutine(DelayDestroy());
+
     }
     public void SetDirection(Vector2 dir)
     {
@@ -25,11 +28,18 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        StreamDestroy(); 
+        //StreamDestroy(); 
+        PhotonNetwork.Destroy(gameObject);
     }
     void StreamDestroy() 
     {
         photonView.RPC(nameof(DestroyRPC), RpcTarget.AllBufferedViaServer); 
     }
-    [PunRPC] public void DestroyRPC() { Destroy(gameObject); }
+    [PunRPC] public void DestroyRPC() { }
+    IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(2.5f);
+        PhotonNetwork.Destroy(gameObject);
+
+    }
 }
