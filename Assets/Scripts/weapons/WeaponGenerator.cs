@@ -32,14 +32,19 @@ public class WeaponGenerator : MonoBehaviour
             yield return new WaitForSeconds(5f);
             while (allGenerated.Count == PhotonNetwork.CurrentRoom.PlayerCount)
             {
-             yield return new WaitForSeconds(1f);
-                
+                yield return new WaitForSeconds(1f);
             }
-            int randomItem = UnityEngine.Random.Range(0, gunPrefabs.Count);
-            Vector2 pos = new Vector2(0, 2);
-            allGenerated.Add(PhotonNetwork.Instantiate($"Weapons\\{gunPrefabs[randomItem].name}", pos, gunPrefabs[randomItem].transform.rotation));
+
+            GenerateRandom();
 
         }
+    }
+    [ContextMenu("Generate")]
+    public void GenerateRandom()
+    {
+        int randomItem = Random.Range(0, gunPrefabs.Count);
+        Vector2 pos = new Vector2(0, 2);
+        allGenerated.Add(PhotonNetwork.Instantiate($"Weapons\\{gunPrefabs[randomItem].name}", pos, gunPrefabs[randomItem].transform.rotation));
     }
 }
 

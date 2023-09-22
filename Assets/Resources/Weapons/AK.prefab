@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2015416867779723718}
   - component: {fileID: 2015416867779723719}
-  - component: {fileID: -1677309473216394069}
-  - component: {fileID: 4006174313538679359}
-  - component: {fileID: -2652422128581931770}
-  - component: {fileID: 8203191583881583908}
-  - component: {fileID: 1739358511064624124}
-  - component: {fileID: 7297337376228287675}
+  - component: {fileID: 5144754669018603024}
+  - component: {fileID: -7335530284407649685}
+  - component: {fileID: -2864283091585653609}
+  - component: {fileID: 4445509901089293527}
+  - component: {fileID: 7841723197122223126}
+  - component: {fileID: 622731468614061028}
   m_Layer: 6
-  m_Name: RocketLauncher
+  m_Name: AK
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015416867779723716}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 302, y: 170, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2015416867779723719
 SpriteRenderer:
@@ -79,18 +79,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 86c506b9116c23246a74ec5edf9deb91, type: 3}
+  m_Sprite: {fileID: 2001717522, guid: b6f37e77757ffc7448f47384182edf8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &-1677309473216394069
+--- !u!114 &5144754669018603024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,10 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1f575a8fb4a24ca1d1dac44c0e603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 11400000, guid: b55b41baf3f6afa449069871fdd860e9, type: 2}
+  manager: {fileID: 11400000, guid: 01c76fc425291614385e1aca2379f35d, type: 2}
   spriteRenderer: {fileID: 0}
   photonView: {fileID: 0}
---- !u!61 &4006174313538679359
+  player: {fileID: 0}
+  bulletInMag: 0
+  totalBullets: 0
+--- !u!61 &-7335530284407649685
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,9 +143,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 5}
-    newSize: {x: 3, y: 3}
+    pivot: {x: 0, y: 1}
+    oldSize: {x: 0.84, y: 0.3}
+    newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -150,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 1}
   m_EdgeRadius: 0
---- !u!50 &-2652422128581931770
+--- !u!50 &-2864283091585653609
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -177,7 +180,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8203191583881583908
+--- !u!114 &4445509901089293527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +198,12 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 622731468614061028}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!58 &1739358511064624124
+--- !u!58 &7841723197122223126
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +238,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &7297337376228287675
+--- !u!114 &622731468614061028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

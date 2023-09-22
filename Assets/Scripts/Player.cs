@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     PhotonView photonView;
     PlayerMovementController playerMovementController;
     PlayerAttackGenerater attackGenerator;
+    internal PlayerInputController playerInputController;
     public float weaponOffset;
     public Vector2 playerDirection = Vector2.right;
     public Health health;
@@ -23,8 +24,10 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI lifeText, gamerTagText;
     internal bool isActionPressed;
     public GameObject body;
+
     private void Awake()
     {
+        playerInputController = GetComponent<PlayerInputController>();
         photonView = GetComponent<PhotonView>();
         playerDetails = new PlayerDetails((string)photonView.InstantiationData[0], (string)photonView.InstantiationData[1], gameObject);
         lifeText.text = playerDetails.life.ToString();
@@ -66,12 +69,11 @@ public class Player : MonoBehaviour
         slider.value = health.currentHealth / health.totalHealth;
     }
 
-    public void Fire(InputAction.CallbackContext obj)
+    public void Fire()
     {
-        if (Time.time > nextFire && currentWeapon != null)
+        if (currentWeapon != null)
         {
-            nextFire = Time.time + currentWeapon.manager.fireRate;
-            attackGenerator.Fire(playerMovementController.direction, playerDirection);
+            currentWeapon.Fire();
         }
     }
 

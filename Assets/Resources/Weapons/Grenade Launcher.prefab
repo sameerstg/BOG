@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2015416867779723718}
   - component: {fileID: 2015416867779723719}
   - component: {fileID: -1677309473216394069}
-  - component: {fileID: 5755743396991207532}
-  - component: {fileID: -1479799661073089747}
-  - component: {fileID: 7028569969290607765}
-  - component: {fileID: 3607776115900968655}
-  - component: {fileID: 1220164333729366687}
+  - component: {fileID: 8533357242434554745}
+  - component: {fileID: 8848895107582406455}
+  - component: {fileID: 3206799983826212030}
+  - component: {fileID: 1148803315706881150}
+  - component: {fileID: 1439160796542950882}
   m_Layer: 6
-  m_Name: Gernade
+  m_Name: Grenade Launcher
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015416867779723716}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 302, y: 170, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2015416867779723719
 SpriteRenderer:
@@ -79,9 +79,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f7f17c33c49617499c10574cf6a99d3, type: 3}
+  m_Sprite: {fileID: -2141247641, guid: 43f84bb0a5209754a91894441e2e3fed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 1
   m_Size: {x: 2, y: 1}
@@ -102,10 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1f575a8fb4a24ca1d1dac44c0e603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 11400000, guid: 4af0a75be477d4649b7f6e0225152a6f, type: 2}
+  manager: {fileID: 11400000, guid: 1f6576e9a744dc24ca2896e768e37b28, type: 2}
   spriteRenderer: {fileID: 0}
   photonView: {fileID: 0}
---- !u!61 &5755743396991207532
+  player: {fileID: 0}
+  bulletInMag: 0
+  totalBullets: 0
+--- !u!61 &8533357242434554745
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +144,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.02, y: 5.02}
+    oldSize: {x: 1.6, y: 0.6}
     newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -150,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 1}
   m_EdgeRadius: 0
---- !u!50 &-1479799661073089747
+--- !u!50 &8848895107582406455
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -177,7 +180,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7028569969290607765
+--- !u!114 &3206799983826212030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,14 +196,14 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1220164333729366687}
+  - {fileID: 1439160796542950882}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!58 &3607776115900968655
+--- !u!58 &1148803315706881150
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,7 +238,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &1220164333729366687
+--- !u!114 &1439160796542950882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

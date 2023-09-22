@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5763f5c158ae3e046985e922363f2a3a, type: 3}
-  m_Name: SMG
+  m_Name: M4
   m_EditorClassIdentifier: 
-  weaponName: sub machine gun
-  weaponType: Gun
-  fireRate: 0
-  bulletSpeed: 0
+  fireRate: 0.2
+  reloadingTime: 1.1
+  bulletSpeed: 10
   knockBackValue: 0
-  weaponPrefab: {fileID: 2015416867779723716, guid: 463862b004aa34649aaf2beae6b6da80, type: 3}
-  bulletCount: 7
-  explosionRadius: 0
-  explosionForce: 0
-  upwordDisplace: 0
+  totalBullet: 60
+  bulletPerMag: 30
+  explosionRadius: 8
+  explosionForce: 1000
+  upwordDisplace: 3
   weaponOffset: 1
+  isAutomatitc: 1
+  oneTimeUse: 0

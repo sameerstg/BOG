@@ -50,6 +50,7 @@ MonoBehaviour:
   - EquipRPC
   - DestroyRPC
   - PlayerHitRpc
+  - PlayerFellRpc
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

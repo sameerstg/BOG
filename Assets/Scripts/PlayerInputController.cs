@@ -25,7 +25,7 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Movement.started += Move;
         playerActions.Movement.canceled += Move;
         playerActions.Jump.started += Jump;
-        playerActions.Attack1.started += Fire;
+        playerActions.Attack1.started +=_=> Fire();
         playerActions.Action.started += _ => { player.isActionPressed = true; };
         playerActions.Action.canceled += _ => { player.isActionPressed = false; };
     }
@@ -35,17 +35,17 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Movement.started -= Move;
         playerActions.Movement.canceled -= Move;
         playerActions.Jump.started -= Jump;
-        playerActions.Attack1.started -= Fire;
+        playerActions.Attack1.started -=_=> Fire();
         playerActions.Action.started -= _ => { player.isActionPressed = true; };
         playerActions.Action.canceled -= _ => { player.isActionPressed = false; };
     }
 
-    private void Fire(InputAction.CallbackContext context)
+    private void Fire()
     {
         if (!photonView.IsMine)
             return;
 
-        player.Fire(context);
+        player.Fire();
     }
 
     private void Jump(InputAction.CallbackContext context)

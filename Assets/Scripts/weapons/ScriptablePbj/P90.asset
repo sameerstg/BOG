@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5763f5c158ae3e046985e922363f2a3a, type: 3}
-  m_Name: Rifle
+  m_Name: P90
   m_EditorClassIdentifier: 
-  weaponName: Rifle
-  weaponType: Gun
-  fireRate: 0
-  bulletSpeed: 10
+  fireRate: 0.09
+  reloadingTime: 1.1
+  bulletSpeed: 0
   knockBackValue: 0
-  weaponPrefab: {fileID: 2015416867779723716, guid: 8ecbe6a3e84065a49bbb3a3406eca584, type: 3}
-  bulletCount: 5
-  explosionRadius: 8
-  explosionForce: 1000
-  upwordDisplace: 3
+  totalBullet: 52
+  bulletPerMag: 26
+  explosionRadius: 0
+  explosionForce: 0
+  upwordDisplace: 0
   weaponOffset: 1
+  isAutomatitc: 1
+  oneTimeUse: 0

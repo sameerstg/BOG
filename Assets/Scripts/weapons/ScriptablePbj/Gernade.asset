@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5763f5c158ae3e046985e922363f2a3a, type: 3}
   m_Name: Gernade
   m_EditorClassIdentifier: 
-  weaponName: Gernade
-  weaponType: 
   fireRate: 0
+  reloadingTime: 0
   bulletSpeed: 0
   knockBackValue: 0
-  weaponPrefab: {fileID: 2015416867779723716, guid: f2d4582d12dbba24f952309c0cf7a097, type: 3}
-  bulletCount: 7
+  totalBullet: 0
+  bulletPerMag: 0
   explosionRadius: 100
   explosionForce: 0
   upwordDisplace: 0
   weaponOffset: 1
+  isAutomatitc: 0
+  oneTimeUse: 1

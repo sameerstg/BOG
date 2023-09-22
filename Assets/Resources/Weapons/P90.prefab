@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2015416867779723718}
   - component: {fileID: 2015416867779723719}
   - component: {fileID: 5144754669018603024}
-  - component: {fileID: -7335530284407649685}
-  - component: {fileID: -2864283091585653609}
-  - component: {fileID: 4445509901089293527}
-  - component: {fileID: 7841723197122223126}
-  - component: {fileID: 622731468614061028}
+  - component: {fileID: 2833040626433617109}
+  - component: {fileID: 8896495446999872044}
+  - component: {fileID: -247841456977482466}
+  - component: {fileID: 4264673902301728057}
+  - component: {fileID: -575860052295500688}
   m_Layer: 6
-  m_Name: EquipedRifle
+  m_Name: P90
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,9 +79,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c9ef79ba59db38f40bd698e29162563d, type: 3}
+  m_Sprite: {fileID: -492779913, guid: e9124c8106f06c648a61bcd69d4ad1cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 1
   m_Size: {x: 2, y: 1}
@@ -102,10 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1f575a8fb4a24ca1d1dac44c0e603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 11400000, guid: 01c76fc425291614385e1aca2379f35d, type: 2}
+  manager: {fileID: 11400000, guid: 8d4973ca0a897b448a342581fa27266d, type: 2}
   spriteRenderer: {fileID: 0}
   photonView: {fileID: 0}
---- !u!61 &-7335530284407649685
+  player: {fileID: 0}
+  bulletInMag: 0
+  totalBullets: 0
+--- !u!61 &2833040626433617109
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +144,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 5}
+    oldSize: {x: 0.6, y: 0.25}
     newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -150,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 1}
   m_EdgeRadius: 0
---- !u!50 &-2864283091585653609
+--- !u!50 &8896495446999872044
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -177,7 +180,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4445509901089293527
+--- !u!114 &-247841456977482466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +198,12 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -575860052295500688}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!58 &7841723197122223126
+--- !u!58 &4264673902301728057
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +238,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &622731468614061028
+--- !u!114 &-575860052295500688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
