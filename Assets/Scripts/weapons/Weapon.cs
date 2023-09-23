@@ -14,7 +14,8 @@ public class Weapon : MonoBehaviour
     bool isReloading;
     bool isFiring;
     float lastFireTime;
-    Vector2 bulletDirection; 
+    Vector2 bulletDirection;
+    float bulletLifetime;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,6 +23,7 @@ public class Weapon : MonoBehaviour
         weaponName = manager.name.Split(' ')[0]; 
         totalBullets = manager.totalBullet;
         bulletInMag = manager.bulletPerMag;
+        bulletLifetime = manager.bulletLifetime;
     }
     internal void Fire(Vector2 bulletDirection)
     {
@@ -70,7 +72,8 @@ public class Weapon : MonoBehaviour
     void SpawnBullet()
     {
         Vector2 spawnPosition = new Vector2(transform.position.x + (player.playerDirection.x * 1.1f), transform.position.y + (player.playerDirection.y * 1.1f));
-        PhotonNetwork.Instantiate("BulletMedium", spawnPosition, Quaternion.identity, 0, new object[] { bulletDirection });
+        GameObject bulletObject = PhotonNetwork.Instantiate("BulletMedium", spawnPosition, Quaternion.LookRotation(player.playerDirection, Vector2.up), 0, new object[] { bulletDirection });
+        bulletObject.GetComponent<Projectile>().lifetime = bulletLifetime;
         bulletInMag--;
         lastFireTime = Time.time;
         player.UpdateWeaponInfo(weaponName, bulletInMag, totalBullets);

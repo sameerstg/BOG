@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     public int damage;
     PhotonView photonView;
+    public float lifetime = 2f;
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
@@ -38,7 +39,7 @@ public class Projectile : MonoBehaviour
     [PunRPC] public void DestroyRPC() { }
     IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(lifetime);
         PhotonNetwork.Destroy(gameObject);
 
     }

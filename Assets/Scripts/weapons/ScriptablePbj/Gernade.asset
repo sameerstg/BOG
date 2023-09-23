@@ -24,3 +24,4 @@ MonoBehaviour:
   weaponOffset: 1
   isAutomatitc: 0
   oneTimeUse: 1
+  bulletLifetime: 2.5
