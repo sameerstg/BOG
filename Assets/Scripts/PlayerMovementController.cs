@@ -17,6 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpMaxSpeed;
     public int totalJumps;
     public int currentJumps;
+    int jumpStamina = 10;
     internal Vector2 direction;
     bool onWall;
     PhotonView photonView;
@@ -45,7 +46,7 @@ public class PlayerMovementController : MonoBehaviour
     float dashForce = 50f;
     bool allowDashing = true;
     float currentDashTimer;
-    float dashCooldown = 2f;
+    float dashCooldown = 0.3f;
     int dashStamina = 10;
     float dashTime;
     Vector2 lastVelocity = Vector2.zero;
@@ -64,6 +65,7 @@ public class PlayerMovementController : MonoBehaviour
         //Set Attributes
         maxStamina = player.playerAttributes.stamina;
         dashTime = (100 / player.playerAttributes.dodgeDistance) / 30;
+        dashCooldown = dashCooldown + 0.2f;
     }
     private void Start()
     {
@@ -146,7 +148,7 @@ public class PlayerMovementController : MonoBehaviour
     }
     public void Jump()
     {
-        if (currentJumps <= 0 || !allowMovement)
+        if (currentJumps <= 0 || !allowMovement || !staminaConsumed(jumpStamina))
         {
             return;
         }

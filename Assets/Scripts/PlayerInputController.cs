@@ -29,6 +29,7 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Action.started += _ => { player.isActionPressed = true; };
         playerActions.Action.canceled += _ => { player.isActionPressed = false; };
         playerActions.Dash.started += Dash;
+        playerActions.MeleeAttack.started += MeleeAttack;
     }
     private void OnDisable()
     {
@@ -40,6 +41,7 @@ public class PlayerInputController : MonoBehaviour
         playerActions.Action.started -= _ => { player.isActionPressed = true; };
         playerActions.Action.canceled -= _ => { player.isActionPressed = false; };
         playerActions.Dash.started -= Dash;
+        playerActions.MeleeAttack.started -= MeleeAttack;
     }
 
 
@@ -68,9 +70,16 @@ public class PlayerInputController : MonoBehaviour
     private void Dash(InputAction.CallbackContext context)
     {
         if(!photonView.IsMine)
-		return;
+		    return;
         player.Dash(context);
     }
 
-  
+    private void MeleeAttack(InputAction.CallbackContext context)
+    {
+        if (!photonView.IsMine)
+            return;
+        player.MeleeAttack(context);
+    }
+
+
 }
