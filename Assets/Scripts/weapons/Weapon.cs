@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public WeaponManager manager;
+    string weaponName;
     public SpriteRenderer spriteRenderer;
     public PhotonView photonView;
     public Player player;
@@ -17,8 +18,9 @@ public class Weapon : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         photonView = GetComponent<PhotonView>();
-        bulletInMag = 0;
-        Reload();
+        weaponName = manager.name.Split(' ')[0]; 
+        totalBullets = manager.totalBullet;
+        bulletInMag = manager.bulletPerMag;
     }
     internal void Fire()
     {
@@ -61,6 +63,7 @@ public class Weapon : MonoBehaviour
             totalBullets = 0;
             bulletInMag = totalBullets;
         }
+       player?.UpdateWeaponInfo(weaponName,bulletInMag,totalBullets);
     }
     void SpawnBullet()
     {
@@ -68,8 +71,9 @@ public class Weapon : MonoBehaviour
         PhotonNetwork.Instantiate("Bullet", spawnPosition, Quaternion.identity, 0, new object[] { player.playerDirection });
         bulletInMag--;
         lastFireTime = Time.time;
-        
+        player.UpdateWeaponInfo(weaponName, bulletInMag, totalBullets);
     }
+
     IEnumerator Firing()
     {
         isFiring = true;
@@ -87,10 +91,10 @@ public class Weapon : MonoBehaviour
     }
     public void Equip(string id,Vector2 playerDirection)
     {
-        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer,id, playerDirection);
+        photonView.RPC(nameof(EquipRPC), RpcTarget.AllBufferedViaServer,id);
     }
     [PunRPC]
-    public void EquipRPC(string id, Vector2 playerDirection)
+    public void EquipRPC(string id)
     {
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
@@ -107,6 +111,7 @@ public class Weapon : MonoBehaviour
         transform.position = (Vector2)body.transform.position + (Vector2.right * manager.weaponOffset);
         transform.parent = body.transform;
         body.transform.localScale = bodyScale;
+        player.UpdateWeaponInfo(weaponName, bulletInMag, totalBullets);
     }
     public void Destroy()
     {

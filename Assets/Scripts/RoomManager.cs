@@ -13,7 +13,7 @@ using UnityEngine.Assertions;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager _instance;
-    public TextMeshProUGUI pingText,connectionStatus;
+    public TextMeshProUGUI pingText,connectionStatus,weaponInfoText;
 
     internal CinemachineTargetGroup targetGroup;
     public List<PlayerDetails> players = new();

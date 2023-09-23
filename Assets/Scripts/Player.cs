@@ -110,6 +110,10 @@ public class Player : MonoBehaviour
         }
 
     }
+    public void UpdateWeaponInfo(string nameOfWeapon,int bulletInMag,int totalBullets)
+    {
+        RoomManager._instance.weaponInfoText.text = $"{nameOfWeapon} : {bulletInMag} / {totalBullets}";
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
