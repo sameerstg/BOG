@@ -47,7 +47,7 @@
     },
     "com.unity.2d.psdimporter": {
       "version": "8.0.2",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.2d.animation": "9.0.1",
@@ -122,7 +122,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "2.0.5",
+      "version": "2.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -186,7 +186,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.6.1",
+      "version": "1.7.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -222,7 +222,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.7.4",
+      "version": "1.7.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -243,7 +243,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.8.0",
+      "version": "1.9.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
