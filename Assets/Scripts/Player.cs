@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour
     public Animator animator;
     public GameObject rightHand;
     public Image reloadingImage;
+    public MeleeWeapon meleeWeapon;
+    int meleeStamina = 10;
+    bool isMeleeAttacking = false;
     private void Awake()
     {
         playerInputController = GetComponent<PlayerInputController>();
@@ -71,7 +75,7 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
-        if (currentWeapon != null)
+        if (currentWeapon != null && !isMeleeAttacking)
         {
             Vector2 bulletDirection = playerDirection;
             bulletDirection.y += UnityEngine.Random.Range(-5 / playerAttributes.accuracy, 5 / playerAttributes.accuracy);
@@ -89,6 +93,31 @@ public class Player : MonoBehaviour
     {
         playerMovementController.Dash();
     }
+
+    public void MeleeAttack(InputAction.CallbackContext obj)
+    {
+        if (isMeleeAttacking || !playerMovementController.staminaConsumed(meleeStamina))
+            return;
+
+        isMeleeAttacking = true;
+        if(currentWeapon != null)
+        {
+            currentWeapon.GetComponent<SpriteRenderer>().DOColor(Color.clear, 0f);
+        }
+        meleeWeapon.gameObject.SetActive(true);
+        meleeWeapon.GetComponent<SpriteRenderer>().DOColor(Color.white, 0.05f);
+        meleeWeapon.GetComponent<SpriteRenderer>().DOColor(Color.clear, 0.05f).SetDelay(0.5f).OnComplete( delegate 
+        {
+            meleeWeapon.gameObject.SetActive(false);
+            if (currentWeapon != null)
+            {
+                currentWeapon.GetComponent<SpriteRenderer>().DOColor(Color.white, 0f);
+            }
+
+            isMeleeAttacking = false;
+        });
+    }
+
     public void Move(InputAction.CallbackContext obj)
     {
         try
@@ -134,7 +163,6 @@ public class Player : MonoBehaviour
             RoomManager._instance.PlayerHit(playerDetails.id, collision.collider.GetComponent<Projectile>().damage);
             GetComponent<Rigidbody2D>().AddForce(collision.otherRigidbody.velocity.normalized * 100f * (health.totalHealth / health.currentHealth));
         }
-       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -143,6 +171,12 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Finish"))
         {
             RoomManager._instance.PlayerDie(playerDetails.id);
+        }
+
+        if (collision.CompareTag("MeleeWeapon"))
+        {
+            RoomManager._instance.PlayerHit(playerDetails.id, collision.GetComponent<MeleeWeapon>().damage);
+            GetComponent<Rigidbody2D>().AddForce((collision.transform.position - transform.position) * 100f * (health.totalHealth / health.currentHealth));
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

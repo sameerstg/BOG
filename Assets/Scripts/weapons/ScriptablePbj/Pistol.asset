@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   fireRate: 0.1
+  reloadingTime: 0
   bulletSpeed: 4
   knockBackValue: 10
   totalBullet: 12
@@ -22,3 +23,5 @@ MonoBehaviour:
   upwordDisplace: 0
   weaponOffset: 1
   isAutomatitc: 0
+  oneTimeUse: 0
+  bulletLifetime: 2.5

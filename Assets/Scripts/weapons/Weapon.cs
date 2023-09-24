@@ -71,7 +71,7 @@ public class Weapon : MonoBehaviour
     void SpawnBullet()
     {
         Vector2 spawnPosition = new Vector2(transform.position.x + (player.playerDirection.x * 1.1f), transform.position.y + (player.playerDirection.y * 1.1f));
-        PhotonNetwork.Instantiate("BulletMedium", spawnPosition, Quaternion.LookRotation(player.playerDirection,Vector2.up), 0, new object[] { bulletDirection,player.playerDetails.id });
+        PhotonNetwork.Instantiate("BulletMedium", spawnPosition, Quaternion.LookRotation(player.playerDirection,Vector2.up), 0, new object[] { bulletDirection,player.playerDetails.id ,manager.bulletLifetime});
         bulletInMag--;
         lastFireTime = Time.time;
         player.UpdateWeaponInfo(weaponName, bulletInMag, totalBullets);

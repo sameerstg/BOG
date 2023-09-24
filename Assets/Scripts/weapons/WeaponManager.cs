@@ -16,4 +16,5 @@ public class WeaponManager : ScriptableObject
     public float weaponOffset = 1;
     public bool isAutomatitc;
     public bool oneTimeUse;
+    public float bulletLifetime;
 }

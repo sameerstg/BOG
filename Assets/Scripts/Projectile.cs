@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     PhotonView photonView;
     internal string playerIdOfCreator;
     public float lifeOfBullet;
+    public float lifetime = 2f;
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
@@ -21,7 +22,7 @@ public class Projectile : MonoBehaviour
     }
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(lifeOfBullet);
+        yield return new WaitForSeconds((float)photonView?.InstantiationData[2]);
         PhotonNetwork.Destroy(gameObject);
     }
     public void SetDirection(Vector2 dir)
