@@ -160,9 +160,7 @@ public class Player : MonoBehaviour
             //SetBodyAndWeaponTransform();
             currentWeapon.transform.rotation = Quaternion.identity;
             isActionPressed = false;
-            animator.SetLayerWeight(1, 0f);
-            animator.SetLayerWeight(2, 1f);
-            rightHand.SetActive(true);
+           
         }
     }
 }

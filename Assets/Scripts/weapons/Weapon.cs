@@ -138,6 +138,9 @@ public class Weapon : MonoBehaviour
         transform.position = (Vector2)hand.transform.position + (Vector2.right * manager.weaponOffset);
         transform.SetParent(hand.transform);
         player.body.transform.localScale = bodyScale;
+        player.animator.SetLayerWeight(1, 0f);
+        player.animator.SetLayerWeight(2, 1f);
+        player.rightHand.SetActive(true);
     }
     public void Destroy()
     {
