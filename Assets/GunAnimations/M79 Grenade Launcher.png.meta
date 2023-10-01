@@ -3,7 +3,7 @@ guid: 43f84bb0a5209754a91894441e2e3fed
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,12 +126,12 @@ TextureImporter:
       name: M79 Grenade Launcher_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1140
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 1151
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +147,12 @@ TextureImporter:
       name: M79 Grenade Launcher_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1080
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 1091
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +168,12 @@ TextureImporter:
       name: M79 Grenade Launcher_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1020
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 1031
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +189,12 @@ TextureImporter:
       name: M79 Grenade Launcher_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 960
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 971
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +210,12 @@ TextureImporter:
       name: M79 Grenade Launcher_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 900
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 911
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +231,12 @@ TextureImporter:
       name: M79 Grenade Launcher_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 840
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 851
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,12 +252,12 @@ TextureImporter:
       name: M79 Grenade Launcher_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 780
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 791
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,12 +273,12 @@ TextureImporter:
       name: M79 Grenade Launcher_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 720
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 731
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -287,12 +294,12 @@ TextureImporter:
       name: M79 Grenade Launcher_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 660
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 671
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,12 +315,12 @@ TextureImporter:
       name: M79 Grenade Launcher_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 600
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 611
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -329,12 +336,12 @@ TextureImporter:
       name: M79 Grenade Launcher_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 540
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 551
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -350,12 +357,12 @@ TextureImporter:
       name: M79 Grenade Launcher_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 480
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 491
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -371,12 +378,12 @@ TextureImporter:
       name: M79 Grenade Launcher_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 420
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 27
+        y: 431
+        width: 121
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -392,12 +399,12 @@ TextureImporter:
       name: M79 Grenade Launcher_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 360
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 27
+        y: 371
+        width: 126
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -413,12 +420,12 @@ TextureImporter:
       name: M79 Grenade Launcher_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 300
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 18
+        y: 311
+        width: 138
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -434,12 +441,12 @@ TextureImporter:
       name: M79 Grenade Launcher_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 240
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3
+        y: 262
+        width: 13
+        height: 6
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -455,12 +462,12 @@ TextureImporter:
       name: M79 Grenade Launcher_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 180
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 19
+        y: 261
+        width: 13
+        height: 8
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -476,12 +483,12 @@ TextureImporter:
       name: M79 Grenade Launcher_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 120
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 42
+        y: 251
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -497,12 +504,12 @@ TextureImporter:
       name: M79 Grenade Launcher_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 60
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 6
+        y: 191
+        width: 149
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -518,12 +525,12 @@ TextureImporter:
       name: M79 Grenade Launcher_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 160
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3
+        y: 131
+        width: 147
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -531,6 +538,48 @@ TextureImporter:
       bones: []
       spriteID: 1e0259879c3dd6a4c9edf1ee24823d54
       internalID: -1604105238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: M79 Grenade Launcher_20
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 71
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc123737a3e94e4293e23b8ac98ff9d
+      internalID: 501918174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: M79 Grenade Launcher_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 11
+        width: 116
+        height: 42
+      alignment: 9
+      pivot: {x: 0.52535, y: 0.09158761}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365a860aad6792d42b02bbb893650e9f
+      internalID: -59628106
       vertices: []
       indices: 
       edges: []
@@ -546,29 +595,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      M79 Grenade Launcher_8: 1676735164
-      M79 Grenade Launcher_15: -544422339
-      M79 Grenade Launcher_6: -817311283
-      M79 Grenade Launcher_16: 1460252969
-      M79 Grenade Launcher_2: 515547524
-      M79 Grenade Launcher_3: -2093422030
-      M79 Grenade Launcher_11: 1894128955
-      M79 Grenade Launcher_10: -717960636
-      M79 Grenade Launcher_17: -354812497
-      M79 Grenade Launcher_14: 1843888885
-      M79 Grenade Launcher_7: -1972349355
-      M79 Grenade Launcher_9: 1252818510
-      M79 Grenade Launcher_1: -401414711
-      M79 Grenade Launcher_4: -853639249
-      M79 Grenade Launcher_12: -156610088
-      M79 Grenade Launcher_19: -1604105238
-      M79 Grenade Launcher_13: 1708829758
-      M79 Grenade Launcher_18: 1516008507
       M79 Grenade Launcher_0: -2141247641
+      M79 Grenade Launcher_1: -401414711
+      M79 Grenade Launcher_10: -717960636
+      M79 Grenade Launcher_11: 1894128955
+      M79 Grenade Launcher_12: -156610088
+      M79 Grenade Launcher_13: 1708829758
+      M79 Grenade Launcher_14: 1843888885
+      M79 Grenade Launcher_15: -544422339
+      M79 Grenade Launcher_16: 1460252969
+      M79 Grenade Launcher_17: -354812497
+      M79 Grenade Launcher_18: 1516008507
+      M79 Grenade Launcher_19: -1604105238
+      M79 Grenade Launcher_2: 515547524
+      M79 Grenade Launcher_20: 501918174
+      M79 Grenade Launcher_21: -59628106
+      M79 Grenade Launcher_3: -2093422030
+      M79 Grenade Launcher_4: -853639249
       M79 Grenade Launcher_5: -2119786389
-  spritePackingTag: 
+      M79 Grenade Launcher_6: -817311283
+      M79 Grenade Launcher_7: -1972349355
+      M79 Grenade Launcher_8: 1676735164
+      M79 Grenade Launcher_9: 1252818510
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

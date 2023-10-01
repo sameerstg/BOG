@@ -106,11 +106,11 @@ public class Weapon : MonoBehaviour
                 if (Time.time > lastFireTime + manager.fireRate || bulletInMag == manager.bulletPerMag)
                 {
                     SpawnBullet();
-                }
-                float initTime = animatior.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                while (animatior.GetCurrentAnimatorStateInfo(0).normalizedTime <= initTime + 1f)
-                {
-                    yield return null;
+                    float initTime = animatior.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                    while (animatior.GetCurrentAnimatorStateInfo(0).normalizedTime <= initTime + 1f)
+                    {
+                        yield return null;
+                    }
                 }
             }
             animatior.enabled = false;
@@ -148,9 +148,8 @@ public class Weapon : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         var bodyScale = player.body.transform.localScale;
         player.body.transform.localScale = new Vector3(1, 1, 1);
-        var hand = player.rightHand;
-        transform.position = (Vector2)hand.transform.position + (Vector2.right * manager.weaponOffset);
-        transform.SetParent(hand.transform);
+        transform.position = player.rightHand.GetComponent<RightHand>().holdingFingers.position;
+        transform.SetParent(player.rightHand.transform);
         player.body.transform.localScale = bodyScale;
         player.animator.SetLayerWeight(1, 0f);
         player.animator.SetLayerWeight(2, 1f);
