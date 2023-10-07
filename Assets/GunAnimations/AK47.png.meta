@@ -3,7 +3,7 @@ guid: b6f37e77757ffc7448f47384182edf8c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,12 +126,12 @@ TextureImporter:
       name: AK47_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 570
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 572
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +147,12 @@ TextureImporter:
       name: AK47_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 540
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 542
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +168,12 @@ TextureImporter:
       name: AK47_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 510
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 512
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +189,12 @@ TextureImporter:
       name: AK47_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 480
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 482
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +210,12 @@ TextureImporter:
       name: AK47_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 450
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 452
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +231,12 @@ TextureImporter:
       name: AK47_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 420
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 422
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,12 +252,12 @@ TextureImporter:
       name: AK47_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 390
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 5
+        y: 392
+        width: 74
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,12 +273,12 @@ TextureImporter:
       name: AK47_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 360
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 2
+        y: 362
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -287,12 +294,12 @@ TextureImporter:
       name: AK47_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 330
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 7
+        y: 332
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,12 +315,12 @@ TextureImporter:
       name: AK47_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 300
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1
+        y: 302
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -329,12 +336,12 @@ TextureImporter:
       name: AK47_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 270
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 272
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -350,12 +357,12 @@ TextureImporter:
       name: AK47_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 240
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1
+        y: 242
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -371,12 +378,12 @@ TextureImporter:
       name: AK47_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 210
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 212
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -392,12 +399,12 @@ TextureImporter:
       name: AK47_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 180
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1
+        y: 182
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -413,12 +420,12 @@ TextureImporter:
       name: AK47_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 150
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 152
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -434,12 +441,12 @@ TextureImporter:
       name: AK47_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 120
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1
+        y: 122
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -455,12 +462,12 @@ TextureImporter:
       name: AK47_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 90
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 92
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -476,12 +483,12 @@ TextureImporter:
       name: AK47_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 60
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1
+        y: 62
+        width: 79
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -497,12 +504,12 @@ TextureImporter:
       name: AK47_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 30
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 32
+        width: 76
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -518,12 +525,12 @@ TextureImporter:
       name: AK47_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 84
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 6
+        y: 2
+        width: 75
+        height: 21
+      alignment: 9
+      pivot: {x: 0.6188183, y: 0.5757185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -546,29 +553,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AK47_9: 1606270602
-      AK47_4: 1889653414
-      AK47_8: 1643914369
-      AK47_2: 1135429267
-      AK47_5: -393672035
       AK47_0: 2001717522
       AK47_1: -665259418
-      AK47_13: -305775180
-      AK47_6: -1537577367
       AK47_10: 132323520
       AK47_11: -1196567005
-      AK47_16: -736024360
-      AK47_14: 1690226490
       AK47_12: -1297870433
-      AK47_18: -1697195743
-      AK47_17: 473910444
-      AK47_3: 1944573000
-      AK47_19: -1068477524
-      AK47_7: 642720552
+      AK47_13: -305775180
+      AK47_14: 1690226490
       AK47_15: -1304917230
-  spritePackingTag: 
+      AK47_16: -736024360
+      AK47_17: 473910444
+      AK47_18: -1697195743
+      AK47_19: -1068477524
+      AK47_2: 1135429267
+      AK47_3: 1944573000
+      AK47_4: 1889653414
+      AK47_5: -393672035
+      AK47_6: -1537577367
+      AK47_7: 642720552
+      AK47_8: 1643914369
+      AK47_9: 1606270602
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

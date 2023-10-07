@@ -3,7 +3,7 @@ guid: e9124c8106f06c648a61bcd69d4ad1cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,12 +126,12 @@ TextureImporter:
       name: P90_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 125
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3
+        y: 126
+        width: 54
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +147,12 @@ TextureImporter:
       name: P90_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 125
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 63
+        y: 126
+        width: 54
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +168,12 @@ TextureImporter:
       name: P90_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 100
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3
+        y: 101
+        width: 54
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +189,12 @@ TextureImporter:
       name: P90_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 100
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 63
+        y: 101
+        width: 54
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +210,12 @@ TextureImporter:
       name: P90_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 75
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2
+        y: 76
+        width: 56
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +231,12 @@ TextureImporter:
       name: P90_5
       rect:
         serializedVersion: 2
-        x: 60
-        y: 75
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 61
+        y: 76
+        width: 58
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,12 +252,12 @@ TextureImporter:
       name: P90_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 50
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2
+        y: 51
+        width: 56
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,12 +273,12 @@ TextureImporter:
       name: P90_7
       rect:
         serializedVersion: 2
-        x: 60
-        y: 50
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 61
+        y: 51
+        width: 58
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -287,12 +294,12 @@ TextureImporter:
       name: P90_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2
+        y: 26
+        width: 56
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,12 +315,12 @@ TextureImporter:
       name: P90_9
       rect:
         serializedVersion: 2
-        x: 60
-        y: 25
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 61
+        y: 26
+        width: 58
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -329,12 +336,12 @@ TextureImporter:
       name: P90_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 60
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 1
+        width: 54
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4822934, y: 0.3098259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,20 +364,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      P90_4: 1556649558
-      P90_2: 594860538
-      P90_9: -1777478329
-      P90_1: -1145848612
-      P90_5: 564027795
-      P90_10: -1533680766
-      P90_7: 312003174
-      P90_6: -1070830259
-      P90_3: 384933724
-      P90_8: -2047175528
       P90_0: -492779913
-  spritePackingTag: 
+      P90_1: -1145848612
+      P90_10: -1533680766
+      P90_2: 594860538
+      P90_3: 384933724
+      P90_4: 1556649558
+      P90_5: 564027795
+      P90_6: -1070830259
+      P90_7: 312003174
+      P90_8: -2047175528
+      P90_9: -1777478329
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

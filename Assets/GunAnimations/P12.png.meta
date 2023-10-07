@@ -3,7 +3,7 @@ guid: 97734b3a0c91ea343bd9c47ce9eaf29b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,12 +126,12 @@ TextureImporter:
       name: P12_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 294
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 295
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +147,12 @@ TextureImporter:
       name: P12_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 252
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 253
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +168,12 @@ TextureImporter:
       name: P12_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 210
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 211
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +189,12 @@ TextureImporter:
       name: P12_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 168
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 169
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +210,12 @@ TextureImporter:
       name: P12_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 126
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 127
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +231,12 @@ TextureImporter:
       name: P12_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 84
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 85
+        width: 51
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,12 +252,12 @@ TextureImporter:
       name: P12_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 42
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 35
+        y: 76
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,12 +273,12 @@ TextureImporter:
       name: P12_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 62
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 6
+        y: 1
+        width: 51
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -279,6 +286,27 @@ TextureImporter:
       bones: []
       spriteID: 9423bd6e34bfec74a90c7187fb7c760e
       internalID: -1620615509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P12_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 43
+        width: 54
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5646224, y: 0.506466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 310271a08a319fa4a96d4142fb857ab5
+      internalID: -1708011894
       vertices: []
       indices: 
       edges: []
@@ -294,17 +322,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      P12_4: -740838079
       P12_0: 2141432788
-      P12_3: 1613441893
       P12_1: -1440665223
-      P12_7: -1620615509
+      P12_2: -1201206543
+      P12_3: 1613441893
+      P12_4: -740838079
       P12_5: -64892040
       P12_6: 843185725
-      P12_2: -1201206543
-  spritePackingTag: 
+      P12_7: -1620615509
+      P12_8: -1708011894
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
