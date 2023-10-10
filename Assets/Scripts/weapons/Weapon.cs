@@ -100,36 +100,48 @@ public class Weapon : MonoBehaviour
     {
         if (bulletInMag>0)
         {
-            isFiring = true;
-            Sprite sprite = spriteRenderer.sprite;
-            animatior.enabled = true;
+           
             if (manager.isAutomatitc)
             {
+                isFiring = true;
+                Sprite sprite = spriteRenderer.sprite;
+                animatior.enabled = true;
                 while (player.playerInputController.playerActions.Attack1.IsInProgress() && bulletInMag > 0)
                 {
                     SpawnBullet();
                     yield return new WaitForSeconds(manager.fireRate);
+                }
+                animatior.enabled = false;
+                spriteRenderer.sprite = sprite;
+                isFiring = false;
+                if (bulletInMag <= 0)
+                {
+                    StartCoroutine(ReloadDelay());
                 }
             }
             else
             {
                 if (Time.time > lastFireTime + manager.fireRate || bulletInMag == manager.bulletPerMag)
                 {
+                    isFiring = true;
+                    Sprite sprite = spriteRenderer.sprite;
+                    animatior.enabled = true;
                     SpawnBullet();
                     float initTime = animatior.GetCurrentAnimatorStateInfo(0).normalizedTime;
                     while (animatior.GetCurrentAnimatorStateInfo(0).normalizedTime <= initTime + 1f)
                     {
                         yield return null;
                     }
+                    animatior.enabled = false;
+                    spriteRenderer.sprite = sprite;
+                    isFiring = false;
+                    if (bulletInMag <= 0)
+                    {
+                        StartCoroutine(ReloadDelay());
+                    }
                 }
             }
-            animatior.enabled = false;
-            spriteRenderer.sprite = sprite;
-            isFiring = false;
-            if (bulletInMag <= 0)
-            {
-                StartCoroutine(ReloadDelay());
-            }
+           
         }
         
     }
