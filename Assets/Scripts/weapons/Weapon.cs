@@ -158,7 +158,9 @@ public class Weapon : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         var bodyScale = player.body.transform.localScale;
         player.body.transform.localScale = new Vector3(1, 1, 1);
-        transform.position = player.rightHand.GetComponent<RightHand>().holdingFingers.position;
+        RightHand rh = player.rightHand.GetComponent<RightHand>();
+        transform.position = rh.holdingFingers.position;
+        transform.rotation= rh.holdingFingers.rotation;
         transform.SetParent(player.rightHand.transform);
         player.body.transform.localScale = bodyScale;
         player.animator.SetLayerWeight(1, 0f);
