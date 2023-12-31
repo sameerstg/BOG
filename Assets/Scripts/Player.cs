@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform crossHair;
     int meleeStamina = 10;
     bool isMeleeAttacking = false;
+    string photonId;
     private void Awake()
     {
         playerInputController = GetComponent<PlayerInputController>();
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
         RoomManager._instance.players.Add(playerDetails);
         RoomManager._instance.targetGroup.AddMember(transform,1,3);
         playerMovementController = GetComponent<PlayerMovementController>();
+        if (photonView.IsMine) photonId = PhotonNetwork.LocalPlayer.UserId;
     }
 
     internal void MousePos(Vector2 mousePos)
@@ -101,12 +103,16 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        health.Refill();
+        else
+        {
+            health.Refill();
+        }
     }
 
     private void GetAttack()
     {
-        healthSlider.value = health.currentHealth / health.totalHealth;
+        healthSlider.value = health.currentHealth>0 ? health.currentHealth / health.totalHealth:0;
+        if (health.currentHealth == 0) Die();
     }
 
     public void Fire()
@@ -135,14 +141,21 @@ public class Player : MonoBehaviour
         if (isMeleeAttacking || !playerMovementController.staminaConsumed(meleeStamina))
             return;
 
+       photonView.RPC(nameof( MeleeShowFunctionality),RpcTarget.All,(photonId));
+       
+    }
+    [PunRPC]
+    public void MeleeShowFunctionality(string photonId)
+    {
+        if (photonView == null||photonId != photonView?.Owner.UserId) return;
         isMeleeAttacking = true;
-        if(currentWeapon != null)
+        if (currentWeapon != null)
         {
             currentWeapon.GetComponent<SpriteRenderer>().DOColor(Color.clear, 0f);
         }
         meleeWeapon.gameObject.SetActive(true);
         meleeWeapon.GetComponent<SpriteRenderer>().DOColor(Color.white, 0.05f);
-        meleeWeapon.GetComponent<SpriteRenderer>().DOColor(Color.clear, 0.05f).SetDelay(0.5f).OnComplete( delegate 
+        meleeWeapon.GetComponent<SpriteRenderer>().DOColor(Color.clear, 0.05f).SetDelay(0.5f).OnComplete(delegate
         {
             meleeWeapon.gameObject.SetActive(false);
             if (currentWeapon != null)
@@ -202,6 +215,7 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag("MeleeWeapon"))
         {
+            //Debug.LogError("melee touch");
             RoomManager._instance.PlayerHit(playerDetails.id, collision.GetComponent<MeleeWeapon>().damage);
             GetComponent<Rigidbody2D>().AddForce((collision.transform.position - transform.position) * 100f * (health.totalHealth / health.currentHealth));
         }
